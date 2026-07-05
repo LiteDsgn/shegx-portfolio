@@ -78,30 +78,6 @@
       pos: '50% 12%',
       summary: 'I ran event and community execution shaped by planning, adaptability and strong communication.',
       detail: 'I handle community activations and people-heavy events that need structure without losing energy.'
-    },
-    {
-      id: 'vroom',
-      num: '06',
-      category: 'operations',
-      title: 'Vroom',
-      tag1: 'Operations',
-      tag2: 'Delivery',
-      focus: 'Operations',
-      image: null,
-      summary: 'I give operations support that keeps day-to-day delivery smooth, structured and on schedule.',
-      detail: 'My operations work across day-to-day delivery.'
-    },
-    {
-      id: 'redknot',
-      num: '07',
-      category: 'creative',
-      title: 'Redknot Wears',
-      tag1: 'Marketing',
-      tag2: 'Fashion',
-      focus: 'Marketing',
-      image: null,
-      summary: 'I handle marketing for the fashion label, connecting product with the right audience.',
-      detail: 'My brand marketing and audience growth for Redknot Wears.'
     }
   ];
 
