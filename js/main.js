@@ -78,7 +78,7 @@
       kicker: 'Narrative',
       focus: 'Football story',
       brings: 'Athlete voice, operational perspective, and a practical growth lens, built for podcasting, commentary and football culture content.',
-      formats: 'Interviews, content features, podcasting, football culture conversations.',
+      formats: ['Interviews', 'Content features', 'Podcasting', 'Football culture conversations'],
       strengths: ['Clear voice', 'Insightful', 'Cross-functional story']
     },
     {
@@ -87,7 +87,7 @@
       kicker: 'Community',
       focus: 'Audience connection',
       brings: 'Presence, execution, and a talent eye that connects sport and culture.',
-      formats: 'Campaigns, activations, branded community events.',
+      formats: ['Campaigns', 'Activations', 'Branded community events'],
       strengths: ['Creative thinker', 'Adaptable', 'Activation ready']
     },
     {
@@ -96,7 +96,7 @@
       kicker: 'Leadership',
       focus: 'Squad culture',
       brings: 'Captaincy, communication, and standards built from real match responsibility.',
-      formats: 'Leadership roles, squad support, player culture initiatives.',
+      formats: ['Leadership roles', 'Squad support', 'Player culture initiatives'],
       strengths: ['Communicator', 'Team builder', 'Composed winger']
     },
     {
@@ -105,7 +105,7 @@
       kicker: 'Development',
       focus: 'Player growth',
       brings: 'Coaching, mentoring, and the patience to build confidence over time.',
-      formats: 'Training sessions, mentorship, development workshops.',
+      formats: ['Training sessions', 'Mentorship', 'Development workshops'],
       strengths: ['Teacher mindset', 'Disciplined', 'Growth focused']
     }
   ];
@@ -346,7 +346,11 @@
       detail.kicker.textContent = active.kicker;
       detail.focus.textContent = active.focus;
       detail.brings.textContent = active.brings;
-      detail.formats.textContent = active.formats;
+
+      detail.formats.textContent = '';
+      active.formats.forEach(function (f) {
+        detail.formats.appendChild(el('span', 'chip', f));
+      });
 
       detail.strengths.textContent = '';
       active.strengths.forEach(function (s) {

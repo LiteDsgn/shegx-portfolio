@@ -781,7 +781,6 @@ section { scroll-margin-top: var(--header-offset); }
 }
 
 .fit__col { border-top: var(--border); padding-top: 14px; }
-.fit__col p { margin-top: 8px; font-size: 15px; line-height: 1.6; }
 .fit__col .chip-row { margin-top: 10px; }
 
 .fit__col-label {
