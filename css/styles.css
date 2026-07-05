@@ -645,6 +645,55 @@ section { scroll-margin-top: var(--header-offset); }
   margin-top: 4px;
 }
 
+/* ---------- Brands / Experience ---------- */
+.brands {
+  background: var(--paper-warm);
+  border-top: var(--border);
+  border-bottom: var(--border);
+  padding: 72px 0;
+}
+
+.brands__head { margin-bottom: 32px; }
+.brands__head .section-title { max-width: 640px; }
+
+.brands__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  background: var(--ink);
+  border: var(--border);
+}
+
+.brand-card {
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  transition: background .18s ease, transform .18s ease;
+}
+.brand-card:hover { background: var(--paper-warm); transform: translateY(-2px); }
+
+.brand-card__name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brand-card__role {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.brand-card--accent { background: var(--ink); }
+.brand-card--accent:hover { background: var(--ink); }
+.brand-card--accent .brand-card__name { color: var(--yellow); }
+.brand-card--accent .brand-card__role { color: var(--on-dark); }
+
 /* ---------- Expertise ---------- */
 .expertise { padding-top: 80px; padding-bottom: 80px; }
 
@@ -1162,9 +1211,17 @@ section { scroll-margin-top: var(--header-offset); }
   .philosophy__inner, .contact__inner { grid-template-columns: 1fr; }
   .writing__grid { grid-template-columns: 1fr; }
   .fit__panel { grid-template-columns: 1fr; }
-  .fit__tabs { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: var(--border); }
-  .fit__tabs button { border-bottom: none; border-right: 1px solid var(--ink); padding: 16px 20px; }
-  .fit__tabs button:hover { padding-left: 20px; }
+  .fit__tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink);
+    border-right: none;
+    border-bottom: var(--border);
+  }
+  .fit__tabs button { flex: none; border: none; padding: 16px 18px; }
+  .fit__tabs button:hover { padding-left: 18px; }
+  .brands__grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 720px) {
@@ -1180,6 +1237,10 @@ section { scroll-margin-top: var(--header-offset); }
   .roles__head, .writing__head { flex-direction: column; align-items: flex-start; }
   .roles__grid, .expertise__grid { grid-template-columns: 1fr; }
   .fit__columns { grid-template-columns: 1fr; }
-  .fit__detail { padding: 24px; }
+  .fit__detail { padding: 22px; }
+  .fit__detail-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .fit__label { font-size: 34px; }
+  .fit__tab-label { font-size: 20px; }
+  .brands__grid { grid-template-columns: 1fr; }
   .contact__row { flex-wrap: wrap; }
 }

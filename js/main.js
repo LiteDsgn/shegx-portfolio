@@ -12,101 +12,138 @@
 
   var ROLES = [
     {
-      id: 'talent50',
+      id: 'firecrackers',
       num: '01',
+      category: 'football',
+      title: 'Firecrackers FC',
+      tag1: 'Captain',
+      tag2: 'Winger · No. 7',
+      focus: 'Match leadership',
+      image: 'assets/dsc-0390.jpg',
+      alt: 'Shegx leading Firecrackers FC teammates on the pitch',
+      summary: 'Active footballer, current captain and winger wearing No. 7. Wide play, leadership and match-day standards, setting the tone through daily team culture.',
+      detail: 'The core of the profile: an active footballer who leads on the pitch and sets the standard every session.'
+    },
+    {
+      id: 'training',
+      num: '02',
+      category: 'training',
+      title: 'Personal Football Training',
+      tag1: 'Personal Trainer',
+      tag2: 'Young Talents',
+      focus: 'Player growth',
+      image: 'assets/dsc-0410.jpg',
+      alt: 'Shegx winning an aerial challenge during training',
+      summary: 'Personal football training for young talents, not an academy. Real on-field experience turned into tailored coaching, skill development and mentorship that helps young players grow.',
+      detail: 'One player at a time. Train hard, play smart, grow stronger.'
+    },
+    {
+      id: 'reborn',
+      num: '03',
+      category: 'creative',
+      title: 'The Reborn Brand',
+      tag1: 'CEO',
+      tag2: 'Creative Director',
+      focus: 'Creative direction',
+      image: null,
+      summary: 'Founder, CEO and Creative Director. Creative direction and brand identity built on courage, class and confidence, not photography.',
+      detail: 'Active brand: creative direction, art direction and visual storytelling.'
+    },
+    {
+      id: 'talent50',
+      num: '04',
       category: 'operations',
       title: 'Talent 50',
       tag1: 'Head of Operations',
       tag2: 'Founding Team',
-      focus: 'Talent identification',
+      focus: 'Operations',
       image: 'assets/dsc-1028.jpg',
       alt: 'Shegx lifting a trophy with the Talent 50 team',
-      summary: 'Operations leadership with a clear eye for talent identification across sports, music and entertainment. The role strengthens the brand credibility beyond football alone.',
-      detail: 'A fit for brands, curators, and talent-facing teams who need calm execution and a sharp sense of upside.'
+      summary: 'Operations leadership with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
+      detail: 'Head of Operations, keeping people and moving parts organised.'
     },
     {
       id: 'bigben',
-      num: '02',
+      num: '05',
       category: 'operations',
       title: 'Big Ben Socials',
       tag1: 'Head of Operations',
       tag2: 'Events',
       focus: 'Event delivery',
       image: null,
-      summary: 'Event and community execution shaped by planning, adaptability and strong communication. It adds operational depth to a profile already grounded in sport.',
-      detail: 'Strongest in community activations, event delivery, and people-heavy environments that need structure without losing energy.'
+      summary: 'Event and community execution shaped by planning, adaptability and strong communication.',
+      detail: 'Community activations and people-heavy events that need structure without losing energy.'
     },
     {
-      id: 'firecrackers',
-      num: '03',
-      category: 'football',
-      title: 'Firecrackers FC',
-      tag1: 'Team Captain',
-      tag2: 'Winger',
-      focus: 'Match leadership',
-      image: 'assets/dsc-0390.jpg',
-      alt: 'Shegx leading Firecrackers FC teammates on the pitch',
-      summary: 'Current football identity rooted in leadership, communication and disciplined wide play: standards on match day, example-setting through daily team culture.',
-      detail: 'Best suited for clubs and leadership-focused football environments that value composure, standards, and team communication.'
+      id: 'vroom',
+      num: '06',
+      category: 'operations',
+      title: 'Vroom',
+      tag1: 'Operations',
+      tag2: 'Delivery',
+      focus: 'Operations',
+      image: null,
+      summary: 'Operations support that keeps day-to-day delivery smooth, structured and on schedule.',
+      detail: 'Operations across day-to-day delivery.'
     },
     {
-      id: 'training',
-      num: '04',
-      category: 'training',
-      title: 'Private Training',
-      tag1: 'Private Trainer',
-      tag2: 'Player Development',
-      focus: 'Athlete growth',
-      image: 'assets/dsc-0410.jpg',
-      alt: 'Shegx winning an aerial challenge during training',
-      summary: 'One-to-one coaching built around development, adaptability and confidence. The focus stays practical: sharper decision-making, better habits, and a stronger platform for growth.',
-      detail: 'Designed for academies, young players, and focused improvement cycles where repetition, clarity, and confidence matter.'
+      id: 'redknot',
+      num: '07',
+      category: 'creative',
+      title: 'Redknot Wears',
+      tag1: 'Marketing',
+      tag2: 'Fashion',
+      focus: 'Marketing',
+      image: null,
+      summary: 'Marketing for a fashion label, connecting product with the right audience.',
+      detail: 'Brand marketing and audience growth for Redknot Wears.'
     }
   ];
 
   var ROLE_FILTERS = [
     { id: 'all', label: 'All roles' },
-    { id: 'operations', label: 'Operations' },
     { id: 'football', label: 'Football' },
-    { id: 'training', label: 'Training' }
+    { id: 'training', label: 'Training' },
+    { id: 'creative', label: 'Creative' },
+    { id: 'operations', label: 'Operations' }
   ];
 
   var AUDIENCES = [
     {
-      id: 'media',
-      label: 'Media',
-      kicker: 'Narrative',
-      focus: 'Football story',
-      brings: 'Athlete voice, operational perspective, and a practical growth lens, built for podcasting, commentary and football culture content.',
-      formats: ['Interviews', 'Content features', 'Podcasting', 'Football culture conversations'],
-      strengths: ['Clear voice', 'Insightful', 'Cross-functional story']
-    },
-    {
-      id: 'brands',
-      label: 'Brands',
-      kicker: 'Community',
-      focus: 'Audience connection',
-      brings: 'Presence, execution, and a talent eye that connects sport and culture.',
-      formats: ['Campaigns', 'Activations', 'Branded community events'],
-      strengths: ['Creative thinker', 'Adaptable', 'Activation ready']
+      id: 'players',
+      label: 'Young Players',
+      kicker: 'Development',
+      focus: 'Personal training',
+      brings: 'One-to-one football training for young talents, not an academy. Real match experience turned into tailored coaching, skill work and mentorship built around each player.',
+      formats: ['1:1 sessions', 'Skill development', 'Mentorship', 'Match prep'],
+      strengths: ['Active footballer', 'Patient coach', 'Growth focused']
     },
     {
       id: 'clubs',
       label: 'Clubs',
       kicker: 'Leadership',
       focus: 'Squad culture',
-      brings: 'Captaincy, communication, and standards built from real match responsibility.',
-      formats: ['Leadership roles', 'Squad support', 'Player culture initiatives'],
+      brings: 'An active winger and captain who brings communication, standards and composure built from real match responsibility.',
+      formats: ['Playing roles', 'Captaincy', 'Squad culture'],
       strengths: ['Communicator', 'Team builder', 'Composed winger']
     },
     {
-      id: 'academies',
-      label: 'Academies',
-      kicker: 'Development',
-      focus: 'Player growth',
-      brings: 'Coaching, mentoring, and the patience to build confidence over time.',
-      formats: ['Training sessions', 'Mentorship', 'Development workshops'],
-      strengths: ['Teacher mindset', 'Disciplined', 'Growth focused']
+      id: 'brands',
+      label: 'Brands',
+      kicker: 'Creative',
+      focus: 'Creative direction',
+      brings: 'Creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice.',
+      formats: ['Creative direction', 'Campaigns', 'Activations'],
+      strengths: ['Creative director', 'Adaptable', 'Operations ready']
+    },
+    {
+      id: 'media',
+      label: 'Media',
+      kicker: 'Narrative',
+      focus: 'Football story',
+      brings: 'An active footballer voice for football content: interviews, features and commentary grounded in real experience on the pitch.',
+      formats: ['Interviews', 'Features', 'Podcasting', 'Commentary'],
+      strengths: ['Clear voice', 'Insightful', 'Authentic']
     }
   ];
 
