@@ -1201,6 +1201,100 @@ section { scroll-margin-top: var(--header-offset); }
   animation: toast-in .25s cubic-bezier(.22, 1, .36, 1) both;
 }
 
+/* ---------- Big Ben gallery ---------- */
+.gallery { padding: 80px 0; }
+
+.gallery__head { margin-bottom: 36px; }
+.gallery__head .section-lede { margin-top: 14px; }
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery__item {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: var(--border);
+  background: var(--ink);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.gallery__item:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--yellow); }
+.gallery__item:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.gallery__item img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.gallery__item:hover img { transform: scale(1.04); }
+
+.gallery__item::after {
+  content: "View";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  padding: 6px 12px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.gallery__item:hover::after,
+.gallery__item:focus-visible::after { opacity: 1; transform: translateY(0); }
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(16, 20, 24, .92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox.is-open { display: flex; animation: fade-in .2s ease both; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox__img {
+  max-width: 92vw;
+  max-height: 86vh;
+  border: 3px solid var(--yellow);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, .4);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease, border-color .16s ease;
+}
+.lightbox__close:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.lightbox__close:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
 /* ==========================================================================
    Responsive
    ========================================================================== */
@@ -1248,5 +1342,7 @@ section { scroll-margin-top: var(--header-offset); }
   .fit__label { font-size: 34px; }
   .fit__tab-label { font-size: 20px; }
   .brands__grid { grid-template-columns: 1fr; }
+  .gallery__grid { grid-template-columns: 1fr; }
+  .gallery__item img { height: 400px; }
   .contact__row { flex-wrap: wrap; }
 }

@@ -556,6 +556,46 @@
     });
   }
 
+  /* ---------- Gallery lightbox ---------- */
+
+  function initLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    var imgEl = document.getElementById('lightbox-img');
+    if (!lightbox || !imgEl) return;
+
+    var closeBtn = lightbox.querySelector('.lightbox__close');
+    var lastFocused = null;
+
+    function open(src, alt) {
+      lastFocused = document.activeElement;
+      imgEl.src = src;
+      imgEl.alt = alt || '';
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function close() {
+      lightbox.classList.remove('is-open');
+      imgEl.src = '';
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.gallery__item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var img = item.querySelector('img');
+        open(item.dataset.full || (img && img.src), img ? img.alt : '');
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) close();
+    });
+  }
+
   /* ---------- Boot ---------- */
 
   initProgress();
@@ -564,4 +604,5 @@
   initAudiences();
   initWriting();
   initCopy();
+  initLightbox();
 })();
