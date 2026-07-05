@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Local working files kept out of the repo
+_archive/
