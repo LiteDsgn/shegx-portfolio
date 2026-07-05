@@ -45,7 +45,9 @@
       tag1: 'CEO',
       tag2: 'Creative Director',
       focus: 'Creative direction',
-      image: null,
+      image: 'assets/logos/the-reborn-brand.jpeg',
+      alt: 'The Reborn Brand logo',
+      logo: true,
       summary: 'Founder, CEO and Creative Director. Creative direction and brand identity built on courage, class and confidence, not photography.',
       detail: 'Active brand: creative direction, art direction and visual storytelling.'
     },
@@ -57,8 +59,9 @@
       tag1: 'Head of Operations',
       tag2: 'Founding Team',
       focus: 'Operations',
-      image: 'assets/dsc-1028.jpg',
-      alt: 'Shegx lifting a trophy with the Talent 50 team',
+      image: 'assets/logos/talent-50.jpeg',
+      alt: 'Talent 50 logo',
+      logo: true,
       summary: 'Operations leadership with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
       detail: 'Head of Operations, keeping people and moving parts organised.'
     },
@@ -70,7 +73,9 @@
       tag1: 'Head of Operations',
       tag2: 'Events',
       focus: 'Event delivery',
-      image: null,
+      image: 'assets/bigben01.jpeg',
+      alt: 'Shegx at a Big Ben Socials event',
+      pos: '50% 12%',
       summary: 'Event and community execution shaped by planning, adaptability and strong communication.',
       detail: 'Community activations and people-heavy events that need structure without losing energy.'
     },
@@ -292,10 +297,11 @@
       });
 
       if (role.image) {
-        var img = el('img', 'role-card__media');
+        var img = el('img', 'role-card__media' + (role.logo ? ' role-card__media--logo' : ''));
         img.src = role.image;
         img.alt = role.alt || '';
         img.loading = 'lazy';
+        if (role.pos) img.style.objectPosition = role.pos;
         card.appendChild(img);
       } else {
         card.appendChild(el('div', 'role-card__media role-card__media--placeholder', role.title));

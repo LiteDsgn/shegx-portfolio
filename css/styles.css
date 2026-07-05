@@ -599,6 +599,12 @@ section { scroll-margin-top: var(--header-offset); }
   border-bottom: var(--border);
 }
 
+.role-card__media--logo {
+  object-fit: contain;
+  background: var(--ink);
+  padding: 30px;
+}
+
 .role-card__media--placeholder {
   display: flex;
   align-items: center;
