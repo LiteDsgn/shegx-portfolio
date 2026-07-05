@@ -1,9 +1,9 @@
-# Shegx — Olusegun Adewole
+# Shegx: Olusegun Adewole
 
 Personal portfolio website for Olusegun Adewole (Shegx): sports and media professional,
 operations leader, talent scout and Firecrackers FC captain, based in Lagos, Nigeria.
 
-Static site — no build step, no framework, no dependencies.
+Static site with no build step, no framework, and no dependencies.
 
 ## Structure
 
@@ -40,4 +40,4 @@ if the feed is unreachable, the bundled fallback posts in `js/main.js`
 ## Deploying
 
 Push to any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages).
-No configuration needed — the site is the repository root.
+No configuration needed. The site is the repository root.

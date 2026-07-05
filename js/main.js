@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Shegx — Olusegun Adewole portfolio
+   Shegx / Olusegun Adewole portfolio
    Vanilla JS: scroll progress, hero slideshow, role filter, audience tabs,
    Substack feed, copy-to-clipboard toast.
    ========================================================================== */
@@ -431,7 +431,7 @@
       if (cached && Array.isArray(cached.posts) && cached.posts.length) {
         initial = cached.posts;
       }
-    } catch (e) { /* corrupted cache — fall back to defaults */ }
+    } catch (e) { /* corrupted cache, fall back to defaults */ }
     render(initial);
 
     // Then refresh from the live feed.
@@ -459,9 +459,9 @@
         render(posts);
         try {
           localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify({ posts: posts, t: Date.now() }));
-        } catch (e) { /* storage full or unavailable — skip caching */ }
+        } catch (e) { /* storage full or unavailable, skip caching */ }
       })
-      .catch(function () { /* offline or feed down — defaults stay up */ });
+      .catch(function () { /* offline or feed down, defaults stay up */ });
   }
 
   /* ---------- Copy-to-clipboard + toast ---------- */
