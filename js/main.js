@@ -21,8 +21,8 @@
       focus: 'Match leadership',
       image: 'assets/dsc-0390.jpg',
       alt: 'Shegx leading Firecrackers FC teammates on the pitch',
-      summary: 'Active footballer, current captain and winger wearing No. 7. Wide play, leadership and match-day standards, setting the tone through daily team culture.',
-      detail: 'The core of the profile: an active footballer who leads on the pitch and sets the standard every session.'
+      summary: 'I\'m the current captain and a winger in the No. 7 for Firecrackers FC. Wide play, leadership and match-day standards, and I set the tone through the daily team culture.',
+      detail: 'This is the core of who I am: an active footballer who leads on the pitch and sets the standard every session.'
     },
     {
       id: 'training',
@@ -34,7 +34,7 @@
       focus: 'Player growth',
       image: 'assets/dsc-0410.jpg',
       alt: 'Shegx winning an aerial challenge during training',
-      summary: 'Personal football training for young talents, not an academy. Real on-field experience turned into tailored coaching, skill development and mentorship that helps young players grow.',
+      summary: 'I run personal football training for young talents, not an academy. I turn real on-field experience into tailored coaching, skill development and mentorship that helps young players grow.',
       detail: 'One player at a time. Train hard, play smart, grow stronger.'
     },
     {
@@ -48,8 +48,8 @@
       image: 'assets/logos/the-reborn-brand.jpeg',
       alt: 'The Reborn Brand logo',
       logo: true,
-      summary: 'Founder, CEO and Creative Director. Creative direction and brand identity built on courage, class and confidence, not photography.',
-      detail: 'Active brand: creative direction, art direction and visual storytelling.'
+      summary: 'I\'m the founder, CEO and Creative Director. I lead creative direction and brand identity built on courage, class and confidence, not photography.',
+      detail: 'My active brand: creative direction, art direction and visual storytelling.'
     },
     {
       id: 'talent50',
@@ -62,8 +62,8 @@
       image: 'assets/logos/talent-50.jpeg',
       alt: 'Talent 50 logo',
       logo: true,
-      summary: 'Operations leadership with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
-      detail: 'Head of Operations, keeping people and moving parts organised.'
+      summary: 'I led operations with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
+      detail: 'As Head of Operations, I kept the people and moving parts organised.'
     },
     {
       id: 'bigben',
@@ -76,8 +76,8 @@
       image: 'assets/bigben01.jpeg',
       alt: 'Shegx at a Big Ben Socials event',
       pos: '50% 12%',
-      summary: 'Event and community execution shaped by planning, adaptability and strong communication.',
-      detail: 'Community activations and people-heavy events that need structure without losing energy.'
+      summary: 'I ran event and community execution shaped by planning, adaptability and strong communication.',
+      detail: 'I handle community activations and people-heavy events that need structure without losing energy.'
     },
     {
       id: 'vroom',
@@ -88,8 +88,8 @@
       tag2: 'Delivery',
       focus: 'Operations',
       image: null,
-      summary: 'Operations support that keeps day-to-day delivery smooth, structured and on schedule.',
-      detail: 'Operations across day-to-day delivery.'
+      summary: 'I give operations support that keeps day-to-day delivery smooth, structured and on schedule.',
+      detail: 'My operations work across day-to-day delivery.'
     },
     {
       id: 'redknot',
@@ -100,8 +100,8 @@
       tag2: 'Fashion',
       focus: 'Marketing',
       image: null,
-      summary: 'Marketing for a fashion label, connecting product with the right audience.',
-      detail: 'Brand marketing and audience growth for Redknot Wears.'
+      summary: 'I handle marketing for the fashion label, connecting product with the right audience.',
+      detail: 'My brand marketing and audience growth for Redknot Wears.'
     }
   ];
 
@@ -119,7 +119,7 @@
       label: 'Young Players',
       kicker: 'Development',
       focus: 'Personal training',
-      brings: 'One-to-one football training for young talents, not an academy. Real match experience turned into tailored coaching, skill work and mentorship built around each player.',
+      brings: 'I give young talents one-to-one football training, not an academy. I turn real match experience into tailored coaching, skill work and mentorship built around each player.',
       formats: ['1:1 sessions', 'Skill development', 'Mentorship', 'Match prep'],
       strengths: ['Active footballer', 'Patient coach', 'Growth focused']
     },
@@ -128,7 +128,7 @@
       label: 'Clubs',
       kicker: 'Leadership',
       focus: 'Squad culture',
-      brings: 'An active winger and captain who brings communication, standards and composure built from real match responsibility.',
+      brings: 'I\'m an active winger and captain. I bring communication, standards and composure built from real match responsibility.',
       formats: ['Playing roles', 'Captaincy', 'Squad culture'],
       strengths: ['Communicator', 'Team builder', 'Composed winger']
     },
@@ -137,7 +137,7 @@
       label: 'Brands',
       kicker: 'Creative',
       focus: 'Creative direction',
-      brings: 'Creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice.',
+      brings: 'I bring creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice.',
       formats: ['Creative direction', 'Campaigns', 'Activations'],
       strengths: ['Creative director', 'Adaptable', 'Operations ready']
     },
@@ -146,7 +146,7 @@
       label: 'Media',
       kicker: 'Narrative',
       focus: 'Football story',
-      brings: 'An active footballer voice for football content: interviews, features and commentary grounded in real experience on the pitch.',
+      brings: 'I bring a real footballer voice to football content: interviews, features and commentary grounded in my time on the pitch.',
       formats: ['Interviews', 'Features', 'Podcasting', 'Commentary'],
       strengths: ['Clear voice', 'Insightful', 'Authentic']
     }
