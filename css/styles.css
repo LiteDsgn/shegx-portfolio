@@ -666,6 +666,36 @@ section { scroll-margin-top: var(--header-offset); }
   padding: 20px;
 }
 
+/* Handwritten "active" note, pinned to the card's top-right corner */
+.role-card__status {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 rgba(16, 20, 24, .3);
+  font-family: var(--font-script);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--blue);
+  transform: rotate(2deg);
+}
+.role-card__status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+}
+
 .role-card__body {
   min-height: 240px;
   padding: 26px 30px;
@@ -714,124 +744,46 @@ section { scroll-margin-top: var(--header-offset); }
 .brands__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
-/* Sticker-sheet treatment: slight tilts + a tape corner per tile */
-.brand-tile {
-  position: relative;
+/* Logo + name sticker cards: 2-col 1-row, logos shown whole */
+.brand-sticker {
   display: flex;
-  flex-direction: column;
-  min-height: 190px;
-  padding: 22px;
-  background: var(--ink);
+  align-items: center;
+  gap: 18px;
+  min-height: 104px;
+  padding: 16px 22px;
+  background: #fff;
   border: var(--border);
+  border-radius: 10px;
+  box-shadow: 3px 4px 0 rgba(16, 20, 24, .28);
   transform: rotate(var(--tilt, 0deg));
   transition: transform .2s ease, box-shadow .2s ease;
 }
-.brand-tile:nth-child(3n+1) { --tilt: -1deg; }
-.brand-tile:nth-child(3n+2) { --tilt: .8deg; }
-.brand-tile:nth-child(3n+3) { --tilt: -.6deg; }
-.brand-tile:hover { transform: rotate(0deg) translate(-3px, -3px); box-shadow: 8px 8px 0 var(--yellow); z-index: 3; }
-.brand-tile::after {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: -17px;
-  width: 60px;
-  height: 20px;
-  background: var(--tape);
-  border: 1px solid var(--tape-edge);
-  transform: rotate(-35deg);
-  z-index: 3;
+.brand-sticker:nth-child(3n+1) { --tilt: -1.2deg; }
+.brand-sticker:nth-child(3n+2) { --tilt: .9deg; }
+.brand-sticker:nth-child(3n+3) { --tilt: -.7deg; }
+.brand-sticker:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--yellow);
 }
 
-.brand-tile__mark {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0 16px;
-}
-
-.brand-tile__word {
-  font-family: var(--font-display);
-  font-size: 30px;
-  line-height: .98;
-  text-transform: uppercase;
-  text-align: center;
-  text-wrap: balance;
-  color: #fff;
-}
-
-.brand-tile__mark img {
-  max-width: 90%;
-  max-height: 118px;
+.brand-sticker__logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
   object-fit: contain;
 }
 
-.brand-tile__role {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .12em;
+.brand-sticker__name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.05;
   text-transform: uppercase;
-  color: var(--on-dark);
+  text-wrap: balance;
+  color: var(--ink);
 }
-
-.brand-tile__status {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--font-script);
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--yellow);
-  transform: rotate(-3deg);
-}
-.brand-tile__status::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--yellow);
-}
-
-.brand-tile--logo { background: #000; }
-.brand-tile--logo .brand-tile__mark {
-  position: absolute;
-  inset: 0;
-  padding: 0;
-  z-index: 1;
-}
-.brand-tile--logo .brand-tile__mark img {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  object-fit: cover;
-}
-.brand-tile--logo .brand-tile__role {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  margin: 0;
-  padding: 11px 16px;
-  background: #000;
-}
-.brand-tile--logo .brand-tile__status { z-index: 2; }
-
-.brand-tile--feature { background: var(--yellow); }
-.brand-tile--feature:hover { box-shadow: 8px 8px 0 var(--ink); }
-.brand-tile--feature .brand-tile__word,
-.brand-tile--feature .brand-tile__role,
-.brand-tile--feature .brand-tile__status { color: var(--ink); }
-.brand-tile--feature .brand-tile__status::before { background: var(--ink); }
 
 /* ---------- Journey ---------- */
 .journey {
@@ -1874,9 +1826,10 @@ section { scroll-margin-top: var(--header-offset); }
   .fit__detail-head { flex-direction: column; align-items: flex-start; gap: 10px; }
   .fit__label { font-size: 34px; }
   .fit__tab-label { font-size: 20px; }
-  .brands__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .brand-tile { min-height: 150px; padding: 16px; }
-  .brand-tile__word { font-size: 21px; }
+  .brands__grid { grid-template-columns: 1fr; gap: 14px; }
+  .brand-sticker { min-height: 88px; padding: 12px 18px; }
+  .brand-sticker__logo { width: 52px; height: 52px; }
+  .brand-sticker__name { font-size: 20px; }
   .gallery__grid { grid-template-columns: 1fr; }
   .gallery__item img { height: 400px; }
   .gallery__doodle { display: none; }

@@ -14,6 +14,7 @@
   var ROLES = [
     {
       id: 'firecrackers',
+      active: true,
       num: '01',
       category: 'football',
       title: 'Firecrackers FC',
@@ -27,6 +28,7 @@
     },
     {
       id: 'training',
+      active: true,
       num: '02',
       category: 'training',
       title: 'Personal Football Training',
@@ -40,6 +42,7 @@
     },
     {
       id: 'reborn',
+      active: true,
       num: '03',
       category: 'creative',
       title: 'The Reborn Brand',
@@ -54,6 +57,7 @@
     },
     {
       id: 'talent50',
+      active: true,
       num: '04',
       category: 'operations',
       title: 'Talent 50',
@@ -68,6 +72,7 @@
     },
     {
       id: 'bigben',
+      active: true,
       num: '05',
       category: 'operations',
       title: 'Big Ben Socials',
@@ -82,6 +87,7 @@
     },
     {
       id: 'kunta',
+      active: true,
       num: '06',
       category: 'creative',
       title: 'Kunta Nation',
@@ -286,6 +292,7 @@
       var card = el('button', 'role-card' + (isActive ? ' is-active' : ''));
       card.type = 'button';
       card.setAttribute('aria-pressed', String(isActive));
+      if (role.active) card.appendChild(el('span', 'role-card__status', 'active'));
       card.addEventListener('click', function () {
         state.roleId = role.id;
         render();
