@@ -77,7 +77,7 @@ section { scroll-margin-top: var(--header-offset); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-25%); } /* 4 identical copies: 1/4 is exact, no drift */
 }
 @keyframes toast-in {
   from { opacity: 0; transform: translate(-50%, 14px); }
@@ -457,18 +457,24 @@ section { scroll-margin-top: var(--header-offset); }
   padding: 14px 0;
 }
 .marquee__track {
-  display: inline-flex;
-  white-space: nowrap;
+  display: flex;
+  width: max-content;
   animation: marquee 28s linear infinite;
+  will-change: transform;
 }
-.marquee__track span {
+.marquee__seq { display: flex; align-items: center; flex: none; }
+.marquee__seq span,
+.marquee__seq em {
   font-family: var(--font-display);
   font-size: 22px;
   letter-spacing: .08em;
+  line-height: 1;
   text-transform: uppercase;
-  padding-right: 18px;
+  font-style: normal;
+  white-space: nowrap;
+  padding: 0 9px;
 }
-.marquee__track em { font-style: normal; color: var(--yellow); }
+.marquee__seq em { color: var(--yellow); }
 
 /* ---------- Metrics ---------- */
 .metrics-wrap { padding-top: 40px; }
