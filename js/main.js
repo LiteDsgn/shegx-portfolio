@@ -215,6 +215,38 @@
     update();
   }
 
+  /* ---------- Mobile nav toggle ---------- */
+
+  function initNavToggle() {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
+
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('is-open'));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+  }
+
   /* ---------- Nav scroll spy ---------- */
 
   function initNavSpy() {
@@ -752,6 +784,7 @@
   /* ---------- Boot ---------- */
 
   initProgress();
+  initNavToggle();
   initNavSpy();
   initHero();
   initRoles();

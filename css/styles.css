@@ -255,6 +255,34 @@ section { scroll-margin-top: var(--header-offset); }
   transform: rotate(-1.2deg);
 }
 
+/* Hamburger toggle: hidden on desktop, shown under 720px */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 9px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.nav-toggle:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+.nav-toggle:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.nav-toggle span {
+  display: block;
+  height: 3px;
+  background: var(--ink);
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
 .progress { height: 5px; background: var(--ink); }
 .progress__fill { height: 100%; width: 0; background: var(--yellow); }
 
@@ -1816,10 +1844,39 @@ section { scroll-margin-top: var(--header-offset); }
 }
 
 @media (max-width: 720px) {
-  :root { --header-offset: 170px; } /* wrapped two-row header is ~151px tall */
   .container { padding-left: 20px; padding-right: 20px; }
-  .site-header__inner { flex-wrap: wrap; }
-  .site-nav { order: 3; width: 100%; flex-wrap: wrap; gap: 6px 18px; padding-bottom: 2px; }
+  .nav-toggle { display: flex; }
+
+  /* Nav becomes a bordered dropdown panel under the sticky header */
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: var(--border);
+    padding: 6px 20px 18px;
+    box-shadow: 0 12px 0 rgba(16, 20, 24, .12);
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav a {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: .03em;
+    padding: 13px 2px;
+    border-bottom: 1px solid rgba(16, 20, 24, .12);
+  }
+  .site-nav a:last-child { border-bottom: none; }
+  .site-nav a.is-current::after {
+    left: 2px;
+    right: auto;
+    width: 46px;
+    bottom: 9px;
+  }
   .hero__copy { padding: 44px 20px; }
   .hero__number { font-size: 84px; }
   .hero__note { left: 20px; right: 20px; max-width: none; }
