@@ -1269,8 +1269,19 @@ section { scroll-margin-top: var(--header-offset); }
   animation: toast-in .25s cubic-bezier(.22, 1, .36, 1) both;
 }
 
-/* ---------- Big Ben gallery ---------- */
+/* ---------- Galleries (Big Ben, football highlights) ---------- */
 .gallery { padding: 80px 0; }
+
+/* Framed variant (football highlights): warm bg, borders, landscape tiles */
+.gallery--framed {
+  background: var(--paper-warm);
+  border-top: var(--border);
+  border-bottom: var(--border);
+}
+.gallery--framed .gallery__item img {
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
 
 .gallery__head { margin-bottom: 36px; }
 .gallery__head .section-lede { margin-top: 14px; }
