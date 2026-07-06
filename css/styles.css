@@ -1350,8 +1350,8 @@ section { scroll-margin-top: var(--header-offset); }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 .lightbox__img {
-  max-width: 92vw;
-  max-height: 86vh;
+  max-width: 80vw;
+  max-height: 70vh;
   border: 3px solid var(--yellow);
   box-shadow: 10px 10px 0 rgba(0, 0, 0, .4);
 }
@@ -1369,10 +1369,66 @@ section { scroll-margin-top: var(--header-offset); }
   font-size: 20px;
   line-height: 1;
   cursor: pointer;
+  z-index: 2;
   transition: background .16s ease, color .16s ease, border-color .16s ease;
 }
 .lightbox__close:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
 .lightbox__close:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background .16s ease, color .16s ease, border-color .16s ease;
+}
+.lightbox__nav:hover { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
+.lightbox__nav:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.lightbox__nav--prev { left: 20px; }
+.lightbox__nav--next { right: 20px; }
+.lightbox__nav[hidden] { display: none; }
+
+.lightbox__thumbs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 0 16px;
+  overflow-x: auto;
+  z-index: 2;
+}
+.lightbox__thumbs[hidden] { display: none; }
+
+.lightbox__thumb {
+  flex: 0 0 auto;
+  width: 68px;
+  height: 50px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, .4);
+  background: none;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .16s ease, border-color .16s ease;
+}
+.lightbox__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lightbox__thumb:hover { opacity: .85; }
+.lightbox__thumb.is-active { opacity: 1; border-color: var(--yellow); }
+.lightbox__thumb:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
 
 /* ==========================================================================
    Responsive
