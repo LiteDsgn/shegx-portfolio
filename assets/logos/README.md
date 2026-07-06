@@ -7,13 +7,15 @@ Naming: kebab-case, matching the brand. Prefer transparent PNG or SVG;
 white-on-dark marks sit on the dark logo tiles cleanly.
 
 ## Present
-- `talent-50.jpeg`: Talent 50 (used on the Talent 50 role card)
-- `the-reborn-brand.jpeg`: The Reborn Brand (used on the Reborn role card)
+- `firecrackers-fc.jpeg`: Firecrackers FC crest (brands grid)
+- `the-reborn-brand.jpeg`: The Reborn Brand (Reborn role card + brands grid)
+- `talent-50.jpeg`: Talent 50 (Talent 50 role card + brands grid)
+- `big-ben-socials.png`: Big Ben Socials (brands grid)
 
 ## Still needed (to show the whole brands grid as logos)
-- `firecrackers-fc.*`: Firecrackers FC
-- `big-ben-socials.*`: Big Ben Socials
+- `kunta-nation.*`: Kunta Nation (active brand, currently a word tile)
 - `vroom.*`: Vroom
 - `redknot-wears.*`: Redknot Wears
+- `dy-styles-and-smiles.*`: DY Styles and Smiles
 
 Drop a file in with the matching name and it can be wired straight in.

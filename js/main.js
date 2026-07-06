@@ -63,8 +63,8 @@
       image: 'assets/logos/talent-50.jpeg',
       alt: 'Talent 50 logo',
       logo: true,
-      summary: 'I led operations with an eye for talent across sport, music and entertainment. End-to-end execution for people and moving parts: structure, calm communication and adaptable leadership.',
-      detail: 'As Head of Operations, I kept the people and moving parts organised.'
+      summary: 'I manage operations with an eye for talent across sport, music and entertainment: seamless coordination, structure and effective talent development.',
+      detail: 'As Head of Operations, I keep the people and moving parts organised.'
     },
     {
       id: 'bigben',
@@ -77,8 +77,19 @@
       image: 'assets/bigben01.jpeg',
       alt: 'Shegx at a Big Ben Socials event',
       pos: '50% 12%',
-      summary: 'I ran event and community execution shaped by planning, adaptability and strong communication.',
+      summary: 'I head operations, overseeing planning, execution and organizational efficiency for events and community activations.',
       detail: 'I handle community activations and people-heavy events that need structure without losing energy.'
+    },
+    {
+      id: 'kunta',
+      num: '06',
+      category: 'creative',
+      title: 'Kunta Nation',
+      tag1: 'A&R',
+      tag2: 'Music & Talent',
+      focus: 'Talent development',
+      summary: 'I\'m an A&R at Kunta Nation, where I identify, develop and support emerging creative talent.',
+      detail: 'Active role: finding and backing the next wave of creative talent.'
     }
   ];
 
@@ -114,9 +125,9 @@
       label: 'Brands',
       kicker: 'Creative',
       focus: 'Creative direction',
-      brings: 'I bring creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice.',
-      formats: ['Creative direction', 'Campaigns', 'Activations'],
-      strengths: ['Creative director', 'Adaptable', 'Operations ready']
+      brings: 'I bring creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice. At Kunta Nation I work A&R, identifying and developing emerging creative talent.',
+      formats: ['Creative direction', 'Campaigns', 'Activations', 'A&R'],
+      strengths: ['Creative director', 'Adaptable', 'Operations ready', 'Talent developer']
     },
     {
       id: 'media',
