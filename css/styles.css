@@ -231,6 +231,7 @@ section { scroll-margin-top: var(--header-offset); }
   text-transform: uppercase;
 }
 .site-nav a {
+  position: relative;
   color: var(--ink);
   text-decoration: none;
   padding: 4px 2px;
@@ -239,6 +240,20 @@ section { scroll-margin-top: var(--header-offset); }
 }
 .site-nav a:hover { color: var(--blue); }
 .site-nav a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* Scroll-spy: marker underline on the section currently in view */
+.site-nav a.is-current { color: var(--blue); }
+.site-nav a.is-current::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  bottom: -3px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--yellow);
+  transform: rotate(-1.2deg);
+}
 
 .progress { height: 5px; background: var(--ink); }
 .progress__fill { height: 100%; width: 0; background: var(--yellow); }
@@ -1801,9 +1816,10 @@ section { scroll-margin-top: var(--header-offset); }
 }
 
 @media (max-width: 720px) {
+  :root { --header-offset: 170px; } /* wrapped two-row header is ~151px tall */
   .container { padding-left: 20px; padding-right: 20px; }
   .site-header__inner { flex-wrap: wrap; }
-  .site-nav { order: 3; width: 100%; overflow-x: auto; gap: 18px; padding-bottom: 2px; }
+  .site-nav { order: 3; width: 100%; flex-wrap: wrap; gap: 6px 18px; padding-bottom: 2px; }
   .hero__copy { padding: 44px 20px; }
   .hero__number { font-size: 84px; }
   .hero__note { left: 20px; right: 20px; max-width: none; }

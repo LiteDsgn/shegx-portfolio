@@ -215,6 +215,35 @@
     update();
   }
 
+  /* ---------- Nav scroll spy ---------- */
+
+  function initNavSpy() {
+    var map = [];
+    document.querySelectorAll('.site-nav a[href^="#"]').forEach(function (link) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) map.push({ link: link, target: target });
+    });
+    if (!map.length) return;
+
+    function update() {
+      var pos = window.scrollY + 170; // just below the sticky header
+      var current = null;
+      map.forEach(function (item) {
+        if (item.target.offsetTop <= pos) current = item;
+      });
+      map.forEach(function (item) {
+        var on = item === current;
+        item.link.classList.toggle('is-current', on);
+        if (on) item.link.setAttribute('aria-current', 'true');
+        else item.link.removeAttribute('aria-current');
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+
   /* ---------- Hero slideshow ---------- */
 
   function initHero() {
@@ -723,6 +752,7 @@
   /* ---------- Boot ---------- */
 
   initProgress();
+  initNavSpy();
   initHero();
   initRoles();
   initAudiences();
