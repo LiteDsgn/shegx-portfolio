@@ -1,7 +1,8 @@
 /* ==========================================================================
    Shegx / Olusegun Adewole portfolio
    Vanilla JS: scroll progress, hero slideshow, role filter, audience tabs,
-   Substack feed, copy-to-clipboard toast.
+   Substack feed, copy-to-clipboard toast, lightbox (photos + video),
+   match-tapes playlist (dormant until MATCH_TAPES has entries).
    ========================================================================== */
 (function () {
   'use strict';
@@ -158,6 +159,13 @@
       image: 'https://substackcdn.com/image/fetch/$s_!EsHv!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/db44ed22-782f-4946-ba74-d51518ab8246_958x1113.jpeg',
       snippet: 'One of the easiest things to do is trace a person\'s flaws back to their childhood.'
     }
+  ];
+
+  /* Match tapes: the "Match tapes" block in the highlights section stays hidden
+     until this has entries. Drop MP4s in assets/videos/ (see its README), then
+     list them here. `poster` and `detail` are optional. */
+  var MATCH_TAPES = [
+    // { title: 'Solo run and finish', detail: 'big sunday game', src: 'assets/videos/highlight-01.mp4', poster: 'assets/videos/highlight-01.jpg' }
   ];
 
   var SUBSTACK_URL = 'https://shegx07.substack.com';
@@ -546,12 +554,41 @@
     var lastFocused = null;
     var group = [];
     var index = 0;
+    var videoEl = null;
+
+    function ensureVideo() {
+      if (videoEl) return videoEl;
+      videoEl = el('video', 'lightbox__video');
+      videoEl.controls = true;
+      videoEl.autoplay = true;
+      videoEl.playsInline = true;
+      imgEl.parentNode.insertBefore(videoEl, imgEl.nextSibling);
+      return videoEl;
+    }
+
+    function stopVideo() {
+      if (!videoEl) return;
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+      videoEl.load();
+      videoEl.hidden = true;
+    }
 
     function render() {
       var item = group[index];
       if (!item) return;
-      imgEl.src = item.src;
-      imgEl.alt = item.alt || '';
+      if (item.video) {
+        imgEl.hidden = true;
+        var v = ensureVideo();
+        v.hidden = false;
+        if (item.poster) v.poster = item.poster;
+        v.src = item.src;
+      } else {
+        stopVideo();
+        imgEl.hidden = false;
+        imgEl.src = item.src;
+        imgEl.alt = item.alt || '';
+      }
 
       var multi = group.length > 1;
       prevBtn.hidden = !multi;
@@ -599,6 +636,7 @@
 
     function close() {
       lightbox.classList.remove('is-open');
+      stopVideo();
       imgEl.src = '';
       thumbsWrap.textContent = '';
       document.body.style.overflow = '';
@@ -632,6 +670,36 @@
       else if (e.key === 'ArrowLeft') go(-1);
       else if (e.key === 'ArrowRight') go(1);
     });
+
+    return open;
+  }
+
+  /* ---------- Match tapes ---------- */
+
+  function initTapes(openLightbox) {
+    var wrap = document.getElementById('match-tapes');
+    var list = document.getElementById('tapes-list');
+    if (!wrap || !list || !MATCH_TAPES.length || !openLightbox) return;
+
+    wrap.hidden = false;
+    MATCH_TAPES.forEach(function (tape) {
+      var row = el('button', 'tape-row');
+      row.type = 'button';
+      row.appendChild(el('span', 'tape-row__play', '▶'));
+      if (tape.poster) {
+        var thumb = el('img', 'tape-row__thumb');
+        thumb.src = tape.poster;
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+        row.appendChild(thumb);
+      }
+      row.appendChild(el('span', 'tape-row__title', tape.title));
+      if (tape.detail) row.appendChild(el('span', 'tape-row__detail', tape.detail));
+      row.addEventListener('click', function () {
+        openLightbox([{ video: true, src: tape.src, poster: tape.poster }], 0);
+      });
+      list.appendChild(row);
+    });
   }
 
   /* ---------- Boot ---------- */
@@ -642,5 +710,5 @@
   initAudiences();
   initWriting();
   initCopy();
-  initLightbox();
+  initTapes(initLightbox());
 })();

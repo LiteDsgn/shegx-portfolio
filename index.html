@@ -123,7 +123,7 @@
     <section class="container metrics-wrap" aria-label="Profile at a glance">
       <div class="metrics">
         <div class="metric">
-          <div class="metric__num">7</div>
+          <div class="metric__num"><span class="scribble-circle scribble-circle--num">7<svg viewBox="0 0 300 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 55 C 25 25, 120 8, 200 14 C 268 19, 292 42, 284 62 C 274 86, 180 96, 100 90 C 40 85, 8 68, 16 48 C 26 22, 130 4, 226 10"/></svg></span></div>
           <div class="metric__label">Active No. 7</div>
           <p class="metric__body">I still captain and play the wing for Firecrackers FC.</p>
         </div>
@@ -237,6 +237,16 @@
             <span class="gallery__caption">up for everything</span>
           </button>
         </div>
+
+        <!-- Match tapes: hidden until clips are listed in MATCH_TAPES (js/main.js).
+             Drop MP4s in assets/videos/ per its README, then add entries there. -->
+        <div class="tapes" id="match-tapes" hidden>
+          <div class="tapes__head">
+            <h3 class="tapes__title">Match tapes</h3>
+            <span class="chip chip--sticker">Press play</span>
+          </div>
+          <div class="tapes__list" id="tapes-list"></div>
+        </div>
       </div>
     </section>
 
@@ -330,6 +340,75 @@
             <img src="assets/bigben03.jpeg" alt="Shegx with a colleague at a Big Ben Socials event" loading="lazy" style="object-position:50% 18%">
             <span class="gallery__caption">the ground team</span>
           </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOURNEY ============ -->
+    <section id="journey" class="journey" aria-label="The journey so far">
+      <div class="container">
+        <div class="journey__head">
+          <div class="kicker">The journey so far</div>
+          <h2 class="section-title">Four chapters, one standard</h2>
+          <p class="section-lede">The same discipline runs through every chapter: it starts on the pitch and carries into everything built off it.</p>
+        </div>
+        <div class="journey__steps">
+          <article class="journey-step">
+            <div class="journey-step__media">
+              <img src="assets/dsc-1022.jpg" alt="Shegx controlling the ball under pressure" loading="lazy" style="object-position:50% 30%">
+              <span class="journey-step__caption">quick feet, quicker decisions</span>
+            </div>
+            <div class="journey-step__copy">
+              <span class="chip chip--sticker">Chapter 01</span>
+              <h3 class="journey-step__title">The player</h3>
+              <p>An active winger in the No. 7, living on the touchline for Firecrackers FC. Everything else in this story exists because of the football.</p>
+            </div>
+          </article>
+          <svg class="journey__connector" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="journey__connector-line" d="M14 8 C 60 16, 98 32, 76 58"/>
+            <path class="journey__connector-head" d="M76 58 l4 -13 M76 58 l-13 -4"/>
+          </svg>
+          <article class="journey-step">
+            <div class="journey-step__media">
+              <img src="assets/dsc-0394.jpg" alt="Shegx leading the celebration with teammates" loading="lazy" style="object-position:35% 15%">
+              <span class="journey-step__caption">the armband means standards</span>
+            </div>
+            <div class="journey-step__copy">
+              <span class="chip chip--sticker">Chapter 02</span>
+              <h3 class="journey-step__title">The captain</h3>
+              <p>Captaincy came with the standards: leading the dressing room, setting the tone in training, and carrying the team on match day.</p>
+            </div>
+          </article>
+          <svg class="journey__connector journey__connector--flip" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="journey__connector-line" d="M14 8 C 60 16, 98 32, 76 58"/>
+            <path class="journey__connector-head" d="M76 58 l4 -13 M76 58 l-13 -4"/>
+          </svg>
+          <article class="journey-step">
+            <div class="journey-step__media">
+              <img src="assets/dsc-0860.jpg" alt="Shegx holding a trophy after a match" loading="lazy">
+              <span class="journey-step__caption">won together, grown together</span>
+            </div>
+            <div class="journey-step__copy">
+              <span class="chip chip--sticker">Chapter 03</span>
+              <h3 class="journey-step__title">The coach</h3>
+              <p>Real match experience turned into one-to-one personal training, not an academy. Young talents, tailored sessions, patient mentorship.</p>
+            </div>
+          </article>
+          <svg class="journey__connector" viewBox="0 0 120 70" aria-hidden="true">
+            <path class="journey__connector-line" d="M14 8 C 60 16, 98 32, 76 58"/>
+            <path class="journey__connector-head" d="M76 58 l4 -13 M76 58 l-13 -4"/>
+          </svg>
+          <article class="journey-step">
+            <div class="journey-step__media">
+              <img src="assets/bigben01.jpeg" alt="Shegx on site at a Big Ben Socials event" loading="lazy" style="object-position:50% 12%">
+              <span class="journey-step__caption">same standards, different pitch</span>
+            </div>
+            <div class="journey-step__copy">
+              <span class="chip chip--sticker">Chapter 04</span>
+              <h3 class="journey-step__title">The builder</h3>
+              <p>Creative direction at The Reborn Brand, operations at Talent 50 and Big Ben Socials: brands built with the discipline of a match day.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
