@@ -1,7 +1,8 @@
 /* ==========================================================================
    Shegx / Olusegun Adewole portfolio
    Vanilla JS: scroll progress, hero slideshow, role filter, audience tabs,
-   Substack feed, copy-to-clipboard toast.
+   Substack feed, copy-to-clipboard toast, lightbox (photos + video),
+   match-tapes playlist (dormant until MATCH_TAPES has entries).
    ========================================================================== */
 (function () {
   'use strict';
@@ -13,6 +14,7 @@
   var ROLES = [
     {
       id: 'firecrackers',
+      active: true,
       num: '01',
       category: 'football',
       title: 'Firecrackers FC',
@@ -21,11 +23,12 @@
       focus: 'Match leadership',
       image: 'assets/dsc-0390.jpg',
       alt: 'Shegx leading Firecrackers FC teammates on the pitch',
-      summary: 'I\'m the current captain and a winger in the No. 7 for Firecrackers FC. Wide play, leadership and match-day standards, and I set the tone through the daily team culture.',
-      detail: 'This is the core of who I am: an active footballer who leads on the pitch and sets the standard every session.'
+      summary: 'Shegx is the current captain and a winger in the No. 7 for Firecrackers FC. Wide play, leadership and match-day standards, setting the tone through the daily team culture.',
+      detail: 'This is the core of who he is: an active footballer who leads on the pitch and sets the standard every session.'
     },
     {
       id: 'training',
+      active: true,
       num: '02',
       category: 'training',
       title: 'Personal Football Training',
@@ -34,11 +37,12 @@
       focus: 'Player growth',
       image: 'assets/dsc-0410.jpg',
       alt: 'Shegx winning an aerial challenge during training',
-      summary: 'I run personal football training for young talents, not an academy. I turn real on-field experience into tailored coaching, skill development and mentorship that helps young players grow.',
+      summary: 'Personal football training for young talents, not an academy. He turns real on-field experience into tailored coaching, skill development and mentorship that helps young players grow.',
       detail: 'One player at a time. Train hard, play smart, grow stronger.'
     },
     {
       id: 'reborn',
+      active: true,
       num: '03',
       category: 'creative',
       title: 'The Reborn Brand',
@@ -48,11 +52,12 @@
       image: 'assets/logos/the-reborn-brand.jpeg',
       alt: 'The Reborn Brand logo',
       logo: true,
-      summary: 'I\'m the founder, CEO and Creative Director. I lead creative direction and brand identity built on courage, class and confidence, not photography.',
-      detail: 'My active brand: creative direction, art direction and visual storytelling.'
+      summary: 'Founder, CEO and Creative Director. He leads creative direction and brand identity built on courage, class and confidence, not photography: art direction and storytelling for a clear, confident visual voice.',
+      detail: 'His own brand: creative direction, art direction and visual storytelling.'
     },
     {
       id: 'talent50',
+      active: true,
       num: '04',
       category: 'operations',
       title: 'Talent 50',
@@ -62,11 +67,12 @@
       image: 'assets/logos/talent-50.jpeg',
       alt: 'Talent 50 logo',
       logo: true,
-      summary: 'I led operations with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
-      detail: 'As Head of Operations, I kept the people and moving parts organised.'
+      summary: 'He manages operations with an eye for talent across sport, music and entertainment: seamless coordination, structure and effective talent development.',
+      detail: 'As Head of Operations, he keeps the people and moving parts organised.'
     },
     {
       id: 'bigben',
+      active: true,
       num: '05',
       category: 'operations',
       title: 'Big Ben Socials',
@@ -76,8 +82,23 @@
       image: 'assets/bigben01.jpeg',
       alt: 'Shegx at a Big Ben Socials event',
       pos: '50% 12%',
-      summary: 'I ran event and community execution shaped by planning, adaptability and strong communication.',
-      detail: 'I handle community activations and people-heavy events that need structure without losing energy.'
+      summary: 'He heads operations, overseeing planning, execution and organizational efficiency for events and community activations.',
+      detail: 'He handles community activations and people-heavy events that need structure without losing energy.'
+    },
+    {
+      id: 'kunta',
+      active: true,
+      num: '06',
+      category: 'creative',
+      title: 'Kunta Nation',
+      tag1: 'A&R',
+      tag2: 'Music & Talent',
+      focus: 'Talent development',
+      image: 'assets/logos/kunta-nation.jpeg',
+      alt: 'Kunta Nation logo',
+      logo: true,
+      summary: 'An A&R at Kunta Nation, where he identifies, develops and supports emerging creative talent.',
+      detail: 'Active role: finding and backing the next wave of creative talent.'
     }
   ];
 
@@ -95,7 +116,7 @@
       label: 'Young Players',
       kicker: 'Development',
       focus: 'Personal training',
-      brings: 'I give young talents one-to-one football training, not an academy. I turn real match experience into tailored coaching, skill work and mentorship built around each player.',
+      brings: 'He gives young talents one-to-one football training, not an academy. Real match experience becomes tailored coaching, skill work and mentorship built around each player.',
       formats: ['1:1 sessions', 'Skill development', 'Mentorship', 'Match prep'],
       strengths: ['Active footballer', 'Patient coach', 'Growth focused']
     },
@@ -104,7 +125,7 @@
       label: 'Clubs',
       kicker: 'Leadership',
       focus: 'Squad culture',
-      brings: 'I\'m an active winger and captain. I bring communication, standards and composure built from real match responsibility.',
+      brings: 'An active winger and captain, he brings communication, standards and composure built from real match responsibility.',
       formats: ['Playing roles', 'Captaincy', 'Squad culture'],
       strengths: ['Communicator', 'Team builder', 'Composed winger']
     },
@@ -113,16 +134,16 @@
       label: 'Brands',
       kicker: 'Creative',
       focus: 'Creative direction',
-      brings: 'I bring creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice.',
-      formats: ['Creative direction', 'Campaigns', 'Activations'],
-      strengths: ['Creative director', 'Adaptable', 'Operations ready']
+      brings: 'He brings creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice. At Kunta Nation he works A&R, identifying and developing emerging creative talent.',
+      formats: ['Creative direction', 'Campaigns', 'Activations', 'A&R'],
+      strengths: ['Creative director', 'Adaptable', 'Operations ready', 'Talent developer']
     },
     {
       id: 'media',
       label: 'Media',
       kicker: 'Narrative',
       focus: 'Football story',
-      brings: 'I bring a real footballer voice to football content: interviews, features and commentary grounded in my time on the pitch.',
+      brings: 'A real footballer voice for football content: interviews, features and commentary grounded in his time on the pitch.',
       formats: ['Interviews', 'Features', 'Podcasting', 'Commentary'],
       strengths: ['Clear voice', 'Insightful', 'Authentic']
     }
@@ -160,6 +181,13 @@
     }
   ];
 
+  /* Match tapes: the "Match tapes" block in the highlights section stays hidden
+     until this has entries. Drop MP4s in assets/videos/ (see its README), then
+     list them here. `poster` and `detail` are optional. */
+  var MATCH_TAPES = [
+    // { title: 'Solo run and finish', detail: 'big sunday game', src: 'assets/videos/highlight-01.mp4', poster: 'assets/videos/highlight-01.jpg' }
+  ];
+
   var SUBSTACK_URL = 'https://shegx07.substack.com';
   var FEED_ENDPOINT = 'https://api.rss2json.com/v1/api.json?rss_url=' +
     encodeURIComponent(SUBSTACK_URL + '/feed');
@@ -187,6 +215,67 @@
     }
 
     window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ---------- Mobile nav toggle ---------- */
+
+  function initNavToggle() {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
+
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!nav.classList.contains('is-open'));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+  }
+
+  /* ---------- Nav scroll spy ---------- */
+
+  function initNavSpy() {
+    var map = [];
+    document.querySelectorAll('.site-nav a[href^="#"]').forEach(function (link) {
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) map.push({ link: link, target: target });
+    });
+    if (!map.length) return;
+
+    function update() {
+      var pos = window.scrollY + 170; // just below the sticky header
+      var current = null;
+      map.forEach(function (item) {
+        if (item.target.offsetTop <= pos) current = item;
+      });
+      map.forEach(function (item) {
+        var on = item === current;
+        item.link.classList.toggle('is-current', on);
+        if (on) item.link.setAttribute('aria-current', 'true');
+        else item.link.removeAttribute('aria-current');
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
     update();
   }
 
@@ -267,6 +356,7 @@
       var card = el('button', 'role-card' + (isActive ? ' is-active' : ''));
       card.type = 'button';
       card.setAttribute('aria-pressed', String(isActive));
+      if (role.active) card.appendChild(el('span', 'role-card__status', 'active'));
       card.addEventListener('click', function () {
         state.roleId = role.id;
         render();
@@ -457,34 +547,53 @@
     } catch (e) { /* corrupted cache, fall back to defaults */ }
     render(initial);
 
-    // Then refresh from the live feed.
-    fetch(FEED_ENDPOINT)
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (!data || data.status !== 'ok' || !Array.isArray(data.items) || !data.items.length) return;
-        var posts = data.items.slice(0, 4).map(function (item) {
-          var tmp = document.createElement('div');
-          tmp.innerHTML = item.description || '';
-          var text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-          var date = '';
-          try {
-            date = new Date((item.pubDate || '').replace(' ', 'T'))
-              .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          } catch (e) { /* leave date empty */ }
-          return {
-            title: item.title || 'Untitled',
-            link: item.link || SUBSTACK_URL,
-            date: date,
-            image: (item.enclosure && item.enclosure.link) || item.thumbnail || '',
-            snippet: text.slice(0, 150) + (text.length > 150 ? '…' : '')
-          };
-        });
-        render(posts);
-        try {
-          localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify({ posts: posts, t: Date.now() }));
-        } catch (e) { /* storage full or unavailable, skip caching */ }
+    function applyPosts(posts) {
+      render(posts);
+      try {
+        localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify({ posts: posts, t: Date.now() }));
+      } catch (e) { /* storage full or unavailable, skip caching */ }
+    }
+
+    // Then refresh from the committed feed snapshot (data/posts.json, kept
+    // current by a scheduled GitHub Action). rss2json is only a fallback:
+    // it caches feeds and can lag hours behind a new post.
+    fetch('data/posts.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('no snapshot');
+        return r.json();
       })
-      .catch(function () { /* offline or feed down, defaults stay up */ });
+      .then(function (posts) {
+        if (!Array.isArray(posts) || !posts.length) throw new Error('empty snapshot');
+        applyPosts(posts.slice(0, 4));
+      })
+      .catch(fetchLiveFeed);
+
+    function fetchLiveFeed() {
+      fetch(FEED_ENDPOINT)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || data.status !== 'ok' || !Array.isArray(data.items) || !data.items.length) return;
+          var posts = data.items.slice(0, 4).map(function (item) {
+            var tmp = document.createElement('div');
+            tmp.innerHTML = item.description || '';
+            var text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+            var date = '';
+            try {
+              date = new Date((item.pubDate || '').replace(' ', 'T'))
+                .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            } catch (e) { /* leave date empty */ }
+            return {
+              title: item.title || 'Untitled',
+              link: item.link || SUBSTACK_URL,
+              date: date,
+              image: (item.enclosure && item.enclosure.link) || item.thumbnail || '',
+              snippet: text.slice(0, 150) + (text.length > 150 ? '…' : '')
+            };
+          });
+          applyPosts(posts);
+        })
+        .catch(function () { /* offline or feed down, defaults stay up */ });
+    }
   }
 
   /* ---------- Copy-to-clipboard + toast ---------- */
@@ -546,12 +655,41 @@
     var lastFocused = null;
     var group = [];
     var index = 0;
+    var videoEl = null;
+
+    function ensureVideo() {
+      if (videoEl) return videoEl;
+      videoEl = el('video', 'lightbox__video');
+      videoEl.controls = true;
+      videoEl.autoplay = true;
+      videoEl.playsInline = true;
+      imgEl.parentNode.insertBefore(videoEl, imgEl.nextSibling);
+      return videoEl;
+    }
+
+    function stopVideo() {
+      if (!videoEl) return;
+      videoEl.pause();
+      videoEl.removeAttribute('src');
+      videoEl.load();
+      videoEl.hidden = true;
+    }
 
     function render() {
       var item = group[index];
       if (!item) return;
-      imgEl.src = item.src;
-      imgEl.alt = item.alt || '';
+      if (item.video) {
+        imgEl.hidden = true;
+        var v = ensureVideo();
+        v.hidden = false;
+        if (item.poster) v.poster = item.poster;
+        v.src = item.src;
+      } else {
+        stopVideo();
+        imgEl.hidden = false;
+        imgEl.src = item.src;
+        imgEl.alt = item.alt || '';
+      }
 
       var multi = group.length > 1;
       prevBtn.hidden = !multi;
@@ -599,6 +737,7 @@
 
     function close() {
       lightbox.classList.remove('is-open');
+      stopVideo();
       imgEl.src = '';
       thumbsWrap.textContent = '';
       document.body.style.overflow = '';
@@ -632,15 +771,47 @@
       else if (e.key === 'ArrowLeft') go(-1);
       else if (e.key === 'ArrowRight') go(1);
     });
+
+    return open;
+  }
+
+  /* ---------- Match tapes ---------- */
+
+  function initTapes(openLightbox) {
+    var wrap = document.getElementById('match-tapes');
+    var list = document.getElementById('tapes-list');
+    if (!wrap || !list || !MATCH_TAPES.length || !openLightbox) return;
+
+    wrap.hidden = false;
+    MATCH_TAPES.forEach(function (tape) {
+      var row = el('button', 'tape-row');
+      row.type = 'button';
+      row.appendChild(el('span', 'tape-row__play', '▶'));
+      if (tape.poster) {
+        var thumb = el('img', 'tape-row__thumb');
+        thumb.src = tape.poster;
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+        row.appendChild(thumb);
+      }
+      row.appendChild(el('span', 'tape-row__title', tape.title));
+      if (tape.detail) row.appendChild(el('span', 'tape-row__detail', tape.detail));
+      row.addEventListener('click', function () {
+        openLightbox([{ video: true, src: tape.src, poster: tape.poster }], 0);
+      });
+      list.appendChild(row);
+    });
   }
 
   /* ---------- Boot ---------- */
 
   initProgress();
+  initNavToggle();
+  initNavSpy();
   initHero();
   initRoles();
   initAudiences();
   initWriting();
   initCopy();
-  initLightbox();
+  initTapes(initLightbox());
 })();
