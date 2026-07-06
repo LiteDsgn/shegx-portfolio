@@ -613,18 +613,20 @@ section { scroll-margin-top: var(--header-offset); }
 
 .roles__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-columns: 1fr;
+  gap: 22px;
 }
 
+/* Long row cards: media pinned left, body defines the card height */
 .role-card {
+  position: relative;
   border: var(--border);
   background: #fff;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  min-height: 240px;
+  padding: 0 0 0 320px;
   cursor: pointer;
   text-align: left;
-  padding: 0;
   font-family: var(--font-body);
   transition: transform .2s ease, box-shadow .2s ease;
 }
@@ -633,10 +635,14 @@ section { scroll-margin-top: var(--header-offset); }
 .role-card.is-active { box-shadow: 8px 8px 0 var(--blue); }
 
 .role-card__media {
-  width: 100%;
-  height: 280px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  height: 100%;
   object-fit: cover;
-  border-bottom: var(--border);
+  border-right: var(--border);
 }
 
 .role-card__media--logo {
@@ -652,7 +658,7 @@ section { scroll-margin-top: var(--header-offset); }
   background: var(--ink);
   color: var(--yellow);
   font-family: var(--font-display);
-  font-size: 44px;
+  font-size: 36px;
   text-transform: uppercase;
   letter-spacing: .04em;
   text-align: center;
@@ -661,9 +667,11 @@ section { scroll-margin-top: var(--header-offset); }
 }
 
 .role-card__body {
-  padding: 28px;
+  min-height: 240px;
+  padding: 26px 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 12px;
 }
 
@@ -1004,42 +1012,8 @@ section { scroll-margin-top: var(--header-offset); }
   white-space: nowrap;
 }
 
-/* ---------- Expertise ---------- */
-.expertise { padding-top: 80px; padding-bottom: 80px; }
-
-.expertise__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 36px;
-}
-
-.card {
-  border: var(--border);
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--yellow); }
-.card p { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
-
-.card__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 22px;
-  text-transform: uppercase;
-}
-.card__title--yellow { color: var(--yellow); }
-
-.card--dark { background: var(--ink); color: #fff; }
-.card--dark:hover { box-shadow: 8px 8px 0 var(--blue); }
-.card--dark p { color: var(--on-dark); }
-
 /* ---------- Best fit ---------- */
-.fit { padding-bottom: 80px; }
+.fit { padding-top: 80px; padding-bottom: 80px; }
 .fit .section-title { margin-bottom: 36px; }
 
 .fit__panel {
@@ -1855,7 +1829,8 @@ section { scroll-margin-top: var(--header-offset); }
   .metrics { grid-template-columns: 1fr 1fr; }
   .metric:nth-child(2) { border-right: none; }
   .metric:nth-child(-n+2) { border-bottom: var(--border); }
-  .expertise__grid { grid-template-columns: 1fr 1fr; }
+  .role-card { padding-left: 250px; }
+  .role-card__media { width: 250px; }
   .roles__feature { grid-template-columns: 1fr; gap: 20px; }
   .roles__feature-tags { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
   .philosophy__inner, .contact__inner { grid-template-columns: 1fr; }
@@ -1885,7 +1860,15 @@ section { scroll-margin-top: var(--header-offset); }
   .metric { border-right: none !important; }
   .metric:not(:last-child) { border-bottom: var(--border); }
   .roles__head, .writing__head { flex-direction: column; align-items: flex-start; }
-  .roles__grid, .expertise__grid { grid-template-columns: 1fr; }
+  .role-card { padding-left: 0; min-height: 0; }
+  .role-card__media {
+    position: static;
+    width: 100%;
+    height: 220px;
+    border-right: none;
+    border-bottom: var(--border);
+  }
+  .role-card__body { min-height: 0; }
   .fit__columns { grid-template-columns: 1fr; }
   .fit__detail { padding: 22px; }
   .fit__detail-head { flex-direction: column; align-items: flex-start; gap: 10px; }

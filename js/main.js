@@ -49,7 +49,7 @@
       image: 'assets/logos/the-reborn-brand.jpeg',
       alt: 'The Reborn Brand logo',
       logo: true,
-      summary: 'I\'m the founder, CEO and Creative Director. I lead creative direction and brand identity built on courage, class and confidence, not photography.',
+      summary: 'I\'m the founder, CEO and Creative Director. I lead creative direction and brand identity built on courage, class and confidence, not photography: art direction and storytelling for a clear, confident visual voice.',
       detail: 'My active brand: creative direction, art direction and visual storytelling.'
     },
     {
@@ -63,7 +63,7 @@
       image: 'assets/logos/talent-50.jpeg',
       alt: 'Talent 50 logo',
       logo: true,
-      summary: 'I led operations with an eye for talent across sport, music and entertainment. Calm execution and structure behind the scenes.',
+      summary: 'I led operations with an eye for talent across sport, music and entertainment. End-to-end execution for people and moving parts: structure, calm communication and adaptable leadership.',
       detail: 'As Head of Operations, I kept the people and moving parts organised.'
     },
     {
