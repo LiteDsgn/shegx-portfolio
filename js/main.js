@@ -94,6 +94,9 @@
       tag1: 'A&R',
       tag2: 'Music & Talent',
       focus: 'Talent development',
+      image: 'assets/logos/kunta-nation.jpeg',
+      alt: 'Kunta Nation logo',
+      logo: true,
       summary: 'An A&R at Kunta Nation, where he identifies, develops and supports emerging creative talent.',
       detail: 'Active role: finding and backing the next wave of creative talent.'
     }
@@ -544,34 +547,53 @@
     } catch (e) { /* corrupted cache, fall back to defaults */ }
     render(initial);
 
-    // Then refresh from the live feed.
-    fetch(FEED_ENDPOINT)
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (!data || data.status !== 'ok' || !Array.isArray(data.items) || !data.items.length) return;
-        var posts = data.items.slice(0, 4).map(function (item) {
-          var tmp = document.createElement('div');
-          tmp.innerHTML = item.description || '';
-          var text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-          var date = '';
-          try {
-            date = new Date((item.pubDate || '').replace(' ', 'T'))
-              .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          } catch (e) { /* leave date empty */ }
-          return {
-            title: item.title || 'Untitled',
-            link: item.link || SUBSTACK_URL,
-            date: date,
-            image: (item.enclosure && item.enclosure.link) || item.thumbnail || '',
-            snippet: text.slice(0, 150) + (text.length > 150 ? '…' : '')
-          };
-        });
-        render(posts);
-        try {
-          localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify({ posts: posts, t: Date.now() }));
-        } catch (e) { /* storage full or unavailable, skip caching */ }
+    function applyPosts(posts) {
+      render(posts);
+      try {
+        localStorage.setItem(POSTS_CACHE_KEY, JSON.stringify({ posts: posts, t: Date.now() }));
+      } catch (e) { /* storage full or unavailable, skip caching */ }
+    }
+
+    // Then refresh from the committed feed snapshot (data/posts.json, kept
+    // current by a scheduled GitHub Action). rss2json is only a fallback:
+    // it caches feeds and can lag hours behind a new post.
+    fetch('data/posts.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('no snapshot');
+        return r.json();
       })
-      .catch(function () { /* offline or feed down, defaults stay up */ });
+      .then(function (posts) {
+        if (!Array.isArray(posts) || !posts.length) throw new Error('empty snapshot');
+        applyPosts(posts.slice(0, 4));
+      })
+      .catch(fetchLiveFeed);
+
+    function fetchLiveFeed() {
+      fetch(FEED_ENDPOINT)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || data.status !== 'ok' || !Array.isArray(data.items) || !data.items.length) return;
+          var posts = data.items.slice(0, 4).map(function (item) {
+            var tmp = document.createElement('div');
+            tmp.innerHTML = item.description || '';
+            var text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+            var date = '';
+            try {
+              date = new Date((item.pubDate || '').replace(' ', 'T'))
+                .toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            } catch (e) { /* leave date empty */ }
+            return {
+              title: item.title || 'Untitled',
+              link: item.link || SUBSTACK_URL,
+              date: date,
+              image: (item.enclosure && item.enclosure.link) || item.thumbnail || '',
+              snippet: text.slice(0, 150) + (text.length > 150 ? '…' : '')
+            };
+          });
+          applyPosts(posts);
+        })
+        .catch(function () { /* offline or feed down, defaults stay up */ });
+    }
   }
 
   /* ---------- Copy-to-clipboard + toast ---------- */
