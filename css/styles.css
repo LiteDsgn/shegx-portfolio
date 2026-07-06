@@ -689,9 +689,8 @@ section { scroll-margin-top: var(--header-offset); }
 }
 
 .role-card__media--logo {
-  object-fit: contain;
+  object-fit: cover;
   background: var(--ink);
-  padding: 30px;
 }
 
 .role-card__media--placeholder {
