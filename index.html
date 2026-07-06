@@ -32,7 +32,7 @@
   <meta name="twitter:creator" content="@shegx_reborn">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -67,6 +67,14 @@
           <span class="chip">Active Footballer · Coach</span>
         </div>
         <h1 class="hero__title anim-up" style="--delay:.14s">Olusegun<br>Adewole</h1>
+        <div class="hero__scrawl anim-up" style="--delay:.18s" aria-hidden="true">
+          <svg viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+            <path d="M56 38 C 42 34, 24 26, 10 8 M10 8 l2.5 13 M10 8 l13 2.5"
+                  fill="none" stroke="currentColor" stroke-width="3.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          aka &ldquo;Shegx&rdquo;
+        </div>
         <p class="hero__lede anim-up" style="--delay:.22s">
           <strong class="highlight">I'm an active footballer and personal football trainer.</strong>
           I captain Firecrackers FC on the wing, and I coach young talents one-to-one. Creative
@@ -77,7 +85,7 @@
           <a class="btn btn--white" href="#roles">View roles</a>
         </div>
         <div class="hero__tags anim-up" style="--delay:.38s">
-          <span class="chip chip--tiny">Firecrackers FC Captain</span>
+          <span class="chip chip--tiny chip--sticker">Firecrackers FC Captain</span>
           <span class="chip chip--tiny">Winger · No. 7</span>
           <span class="chip chip--tiny">Personal Trainer</span>
           <span class="chip chip--tiny">Creative Director</span>
@@ -182,13 +190,26 @@
       </div>
     </section>
 
+    <!-- torn-paper divider -->
+    <div class="torn torn--to-warm" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(16,20,24,.14)" transform="translate(0 9)" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+        <path fill="rgba(255,255,255,.9)" transform="translate(0 5)" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+        <path fill="currentColor" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+      </svg>
+    </div>
+
     <!-- ============ FOOTBALL HIGHLIGHTS ============ -->
     <section id="highlights" class="gallery gallery--framed" aria-label="Football highlights">
       <div class="container">
         <div class="gallery__head">
           <div class="kicker">On the pitch</div>
-          <h2 class="section-title">Football highlights</h2>
+          <h2 class="section-title">Football <span class="scribble-circle">highlights<svg viewBox="0 0 300 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 55 C 25 25, 120 8, 200 14 C 268 19, 292 42, 284 62 C 274 86, 180 96, 100 90 C 40 85, 8 68, 16 48 C 26 22, 130 4, 226 10"/></svg></span></h2>
           <p class="section-lede">Match-day moments for Firecrackers FC: taking players on, winning duels, and celebrating goals.</p>
+          <svg class="gallery__doodle" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22 3 C 24 14, 30 20, 41 22 C 30 24, 24 30, 22 41 C 20 30, 14 24, 3 22 C 14 20, 20 14, 22 3 Z"/>
+            <path d="M37 5 l1.5 4.5 M43 9 l-4.5 1.5" stroke-width="3"/>
+          </svg>
         </div>
         <div class="gallery__grid">
           <button class="gallery__item" type="button" data-full="assets/dsc-1028.jpg" aria-label="Enlarge photo">
@@ -379,6 +400,15 @@
       </div>
     </section>
 
+    <!-- torn-paper divider -->
+    <div class="torn torn--to-ink" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(0,0,0,.35)" transform="translate(0 9)" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+        <path fill="rgba(255,255,255,.85)" transform="translate(0 5)" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+        <path fill="currentColor" d="M0 0 L1440 0 L1440 14 L1410 22 L1381 9 L1352 24 L1322 12 L1291 27 L1262 8 L1233 20 L1203 30 L1174 13 L1145 24 L1114 7 L1085 18 L1056 28 L1026 10 L997 21 L967 31 L938 14 L908 25 L879 8 L850 19 L820 29 L791 11 L762 22 L732 6 L703 17 L674 27 L644 12 L615 23 L585 9 L556 20 L527 30 L497 13 L468 24 L438 7 L409 18 L380 28 L350 10 L321 21 L291 31 L262 14 L233 25 L203 8 L174 19 L145 29 L115 11 L86 22 L56 9 L27 18 L0 12 Z"/>
+      </svg>
+    </div>
+
     <!-- ============ PHILOSOPHY ============ -->
     <section class="philosophy" aria-label="Philosophy">
       <div class="container philosophy__inner">
@@ -397,7 +427,7 @@
             <span class="chip chip--ghost">Dedicated coach</span>
             <span class="chip chip--ghost">Creative director</span>
             <span class="chip chip--ghost">Team builder</span>
-            <span class="chip chip--yellow">Leads with standards</span>
+            <span class="chip chip--yellow chip--sticker">Leads with standards</span>
           </div>
         </div>
       </div>

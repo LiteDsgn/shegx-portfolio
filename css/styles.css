@@ -1,6 +1,7 @@
 /* ==========================================================================
    Shegx / Olusegun Adewole portfolio
-   Neo-brutalist system: hard borders, offset shadows, Anton display type.
+   Neo-brutalist system: hard borders, offset shadows, Anton display type,
+   with collage accents: scribbles, tape, torn-paper edges, tilted photos.
    ========================================================================== */
 
 /* ---------- Design tokens ---------- */
@@ -18,6 +19,10 @@
 
   --font-display: "Anton", "Archivo", system-ui, sans-serif;
   --font-body: "Archivo", system-ui, sans-serif;
+  --font-script: "Caveat", "Segoe Script", cursive;
+
+  --tape: rgba(245, 211, 54, .68);
+  --tape-edge: rgba(16, 20, 24, .18);
 
   --border: 3px solid var(--ink);
   --container: 1240px;
@@ -144,6 +149,15 @@ section { scroll-margin-top: var(--header-offset); }
 .chip--yellow { background: var(--yellow); color: var(--ink); }
 .chip--ink { background: var(--ink); color: var(--yellow); }
 
+.chip--sticker {
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 2px 3px 0 rgba(16, 20, 24, .3);
+  transform: rotate(-2.5deg);
+}
+
 .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .btn {
@@ -258,6 +272,20 @@ section { scroll-margin-top: var(--header-offset); }
   text-wrap: balance;
 }
 
+.hero__scrawl {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: -10px 0 -6px 12px;
+  font-family: var(--font-script);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--blue);
+  transform: rotate(-4deg);
+}
+.hero__scrawl svg { width: 40px; height: 30px; flex-shrink: 0; margin-top: -10px; }
+
 .hero__lede {
   font-size: 19px;
   line-height: 1.5;
@@ -345,6 +373,18 @@ section { scroll-margin-top: var(--header-offset); }
   max-width: 320px;
   z-index: 2;
 }
+.hero__note::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 28px;
+  width: 86px;
+  height: 26px;
+  background: var(--tape);
+  border: 1px solid var(--tape-edge);
+  transform: rotate(-4deg);
+}
+
 .hero__note-kicker {
   font-size: 10px;
   font-weight: 800;
@@ -1272,10 +1312,9 @@ section { scroll-margin-top: var(--header-offset); }
 /* ---------- Galleries (Big Ben, football highlights) ---------- */
 .gallery { padding: 80px 0; }
 
-/* Framed variant (football highlights): warm bg, borders, landscape tiles */
+/* Framed variant (football highlights): warm bg, torn top edge, landscape tiles */
 .gallery--framed {
   background: var(--paper-warm);
-  border-top: var(--border);
   border-bottom: var(--border);
 }
 .gallery--framed .gallery__item img {
@@ -1283,42 +1322,68 @@ section { scroll-margin-top: var(--header-offset); }
   aspect-ratio: 4 / 3;
 }
 
-.gallery__head { margin-bottom: 36px; }
+.gallery__head { position: relative; margin-bottom: 36px; }
 .gallery__head .section-lede { margin-top: 14px; }
 
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 34px 26px;
 }
 
+/* Taped polaroid treatment: white frame, slight tilt, tape strip on top */
 .gallery__item {
   position: relative;
   display: block;
-  padding: 0;
+  padding: 12px 12px 16px;
   border: var(--border);
-  background: var(--ink);
+  background: #fff;
   cursor: pointer;
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease;
+  overflow: visible;
+  box-shadow: 4px 5px 0 rgba(16, 20, 24, .18);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.gallery__item:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--yellow); }
+.gallery__item:nth-child(6n+1) { --tilt: -1.6deg; }
+.gallery__item:nth-child(6n+2) { --tilt: 1.2deg; }
+.gallery__item:nth-child(6n+3) { --tilt: -.8deg; }
+.gallery__item:nth-child(6n+4) { --tilt: 1.7deg; }
+.gallery__item:nth-child(6n+5) { --tilt: -1.1deg; }
+.gallery__item:nth-child(6n+6) { --tilt: .9deg; }
+.gallery__item:hover {
+  transform: rotate(0deg) translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--yellow);
+  z-index: 3;
+}
 .gallery__item:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+.gallery__item::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 96px;
+  height: 28px;
+  background: var(--tape);
+  border: 1px solid var(--tape-edge);
+  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+  z-index: 2;
+}
+.gallery__item:nth-child(even)::before { --tape-tilt: 3deg; }
 
 .gallery__item img {
   width: 100%;
   height: 440px;
   object-fit: cover;
   display: block;
-  transition: transform .4s ease;
+  border: 2px solid var(--ink);
 }
-.gallery__item:hover img { transform: scale(1.04); }
 
 .gallery__item::after {
   content: "View";
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 22px;
+  bottom: 26px;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .12em;
@@ -1333,6 +1398,47 @@ section { scroll-margin-top: var(--header-offset); }
 }
 .gallery__item:hover::after,
 .gallery__item:focus-visible::after { opacity: 1; transform: translateY(0); }
+
+/* ---------- Collage accents: scribbles, doodles, torn edges ---------- */
+.scribble-circle { position: relative; display: inline-block; }
+.scribble-circle svg {
+  position: absolute;
+  left: -7%;
+  top: -16%;
+  width: 114%;
+  height: 132%;
+  overflow: visible;
+  pointer-events: none;
+}
+.scribble-circle path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: .9;
+}
+
+.gallery__doodle {
+  position: absolute;
+  right: 6%;
+  bottom: 0;
+  width: 72px;
+  height: 72px;
+  color: var(--blue);
+  transform: rotate(12deg);
+}
+.gallery__doodle path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.torn { display: block; height: 40px; }
+.torn svg { display: block; width: 100%; height: 100%; }
+.torn--to-warm { background: var(--paper-warm); color: var(--paper); }
+.torn--to-ink { background: var(--ink); color: var(--paper-warm); }
 
 /* ---------- Lightbox ---------- */
 .lightbox {
@@ -1481,5 +1587,8 @@ section { scroll-margin-top: var(--header-offset); }
   .brand-tile__word { font-size: 21px; }
   .gallery__grid { grid-template-columns: 1fr; }
   .gallery__item img { height: 400px; }
+  .gallery__doodle { display: none; }
+  .torn { height: 26px; }
+  .hero__scrawl { margin-left: 4px; }
   .contact__row { flex-wrap: wrap; }
 }
