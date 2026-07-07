@@ -789,18 +789,27 @@
       var row = el('button', 'tape-card');
       row.type = 'button';
       row.setAttribute('aria-label', 'Play full video: ' + tape.title);
-
+      
       var vid = el('video', 'tape-card__video');
       vid.autoplay = true;
       vid.muted = true;
       vid.loop = true;
       vid.playsInline = true;
-      vid.preload = 'metadata';
       if (tape.poster) vid.poster = tape.poster;
-      vid.src = tape.src;
-      row.appendChild(vid);
+      
+      var srcMp4 = el('source');
+      srcMp4.src = tape.src;
+      srcMp4.type = 'video/mp4';
+      vid.appendChild(srcMp4);
+      
+      var srcWebm = el('source');
+      srcWebm.src = tape.src.replace('.mp4', '.webm');
+      srcWebm.type = 'video/webm';
+      vid.insertBefore(srcWebm, srcMp4);
 
-      if (tape.detail) row.appendChild(el('span', 'tape-card__caption', tape.detail));
+      row.appendChild(vid);
+      
+      if (tape.detail) row.appendChild(el('span', 'tape-card__title', tape.detail));
 
       row.addEventListener('click', function () {
         openLightbox([{ video: true, src: tape.src, poster: tape.poster }], 0);
