@@ -185,9 +185,9 @@
      until this has entries. Drop MP4s in assets/videos/ (see its README), then
      list them here. `poster` and `detail` are optional. */
   var MATCH_TAPES = [
-    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight01.mp4' },
-    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight02.mp4' },
-    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight03.mp4' }
+    { title: 'Match highlight 01', detail: 'Firecrackers FC', src: 'assets/videos/highlight01.mp4' },
+    { title: 'Match highlight 02', detail: 'Firecrackers FC', src: 'assets/videos/highlight02.mp4' },
+    { title: 'Match highlight 03', detail: 'Firecrackers FC', src: 'assets/videos/highlight03.mp4' }
   ];
 
   var SUBSTACK_URL = 'https://shegx07.substack.com';
@@ -786,18 +786,22 @@
 
     wrap.hidden = false;
     MATCH_TAPES.forEach(function (tape) {
-      var row = el('button', 'tape-row');
+      var row = el('button', 'tape-card');
       row.type = 'button';
-      row.appendChild(el('span', 'tape-row__play', '▶'));
-      if (tape.poster) {
-        var thumb = el('img', 'tape-row__thumb');
-        thumb.src = tape.poster;
-        thumb.alt = '';
-        thumb.loading = 'lazy';
-        row.appendChild(thumb);
-      }
-      row.appendChild(el('span', 'tape-row__title', tape.title));
-      if (tape.detail) row.appendChild(el('span', 'tape-row__detail', tape.detail));
+      row.setAttribute('aria-label', 'Play full video: ' + tape.title);
+
+      var vid = el('video', 'tape-card__video');
+      vid.autoplay = true;
+      vid.muted = true;
+      vid.loop = true;
+      vid.playsInline = true;
+      vid.preload = 'metadata';
+      if (tape.poster) vid.poster = tape.poster;
+      vid.src = tape.src;
+      row.appendChild(vid);
+
+      if (tape.detail) row.appendChild(el('span', 'tape-card__caption', tape.detail));
+
       row.addEventListener('click', function () {
         openLightbox([{ video: true, src: tape.src, poster: tape.poster }], 0);
       });
