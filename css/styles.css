@@ -968,44 +968,41 @@ section { scroll-margin-top: var(--header-offset); }
   }
 }
 
-/* Taped polaroid treatment, matching .gallery__item so tapes and photos read as one collage. */
+/* Viewfinder/screen-bezel treatment: thick ink frame, REC badge, caption as a film-strip bar. */
 .tape-card {
   position: relative;
   display: block;
   width: 100%;
-  padding: 12px 12px 20px;
+  padding: 0;
   border: var(--border);
-  background: #fff;
+  background: var(--ink);
   cursor: pointer;
   text-align: left;
   text-decoration: none;
-  box-shadow: 4px 5px 0 rgba(16, 20, 24, .18);
-  transition: transform .25s ease, box-shadow .25s ease;
-  transform: rotate(var(--tilt, 0deg));
+  box-shadow: 5px 5px 0 rgba(16, 20, 24, .2);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.tape-card:nth-child(3n+1) { --tilt: -1.2deg; }
-.tape-card:nth-child(3n+2) { --tilt: 0.8deg; }
-.tape-card:nth-child(3n+3) { --tilt: -0.5deg; }
 .tape-card:hover {
-  transform: rotate(0deg) translate(-3px, -3px);
+  transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0 var(--yellow);
   z-index: 3;
 }
 .tape-card:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
 
 .tape-card::before {
-  content: "";
+  content: "\25cf REC";
   position: absolute;
-  top: -14px;
-  left: 50%;
-  width: 80px;
-  height: 26px;
-  background: var(--tape);
-  border: 1px solid var(--tape-edge);
-  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  padding: 4px 8px;
   z-index: 2;
 }
-.tape-card:nth-child(even)::before { --tape-tilt: 3deg; }
 
 .tape-card::after {
   content: "▶ Play";
@@ -1037,8 +1034,6 @@ section { scroll-margin-top: var(--header-offset); }
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
-  border: 2px solid var(--ink);
-  background: var(--ink);
   pointer-events: none;
   position: relative;
   z-index: 1;
@@ -1050,15 +1045,16 @@ section { scroll-margin-top: var(--header-offset); }
 
 .tape-card__title {
   display: block;
-  margin-top: 14px;
-  margin-bottom: 2px;
-  font-family: var(--font-script);
-  font-size: 21px;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--ink-soft);
-  text-align: center;
-  transform: rotate(-1.2deg);
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--on-dark-strong);
+  background: rgba(16, 20, 24, .55);
+  position: relative;
+  z-index: 2;
 }
 
 .tape-card__detail {
