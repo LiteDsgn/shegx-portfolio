@@ -21,7 +21,7 @@
       tag1: 'Captain',
       tag2: 'Winger · No. 7',
       focus: 'Match leadership',
-      image: 'assets/dsc-0390.jpg',
+      image: 'assets/dsc-0390.webp',
       alt: 'Shegx leading Firecrackers FC teammates on the pitch',
       summary: 'Shegx is the current captain and a winger in the No. 7 for Firecrackers FC. Wide play, leadership and match-day standards, setting the tone through the daily team culture.',
       detail: 'This is the core of who he is: an active footballer who leads on the pitch and sets the standard every session.'
@@ -35,9 +35,9 @@
       tag1: 'Personal Trainer',
       tag2: 'Young Talents',
       focus: 'Player growth',
-      image: 'assets/dsc-0410.jpg',
+      image: 'assets/dsc-0410.webp',
       alt: 'Shegx winning an aerial challenge during training',
-      summary: 'Personal football training for young talents, not an academy. He turns real on-field experience into tailored coaching, skill development and mentorship that helps young players grow.',
+      summary: 'Personal football training for young talents. He turns real on-field experience into tailored coaching, skill development and mentorship that helps young players grow.',
       detail: 'One player at a time. Train hard, play smart, grow stronger.'
     },
     {
@@ -49,10 +49,10 @@
       tag1: 'CEO',
       tag2: 'Creative Director',
       focus: 'Creative direction',
-      image: 'assets/logos/the-reborn-brand.jpeg',
+      image: 'assets/logos/the-reborn-brand.webp',
       alt: 'The Reborn Brand logo',
       logo: true,
-      summary: 'Founder, CEO and Creative Director. He leads creative direction and brand identity built on courage, class and confidence, not photography: art direction and storytelling for a clear, confident visual voice.',
+      summary: 'Founder, CEO and Creative Director. He leads creative direction and brand identity built on courage, class and confidence: art direction and storytelling for a clear, confident visual voice.',
       detail: 'His own brand: creative direction, art direction and visual storytelling.'
     },
     {
@@ -64,7 +64,7 @@
       tag1: 'Head of Operations',
       tag2: 'Founding Team',
       focus: 'Operations',
-      image: 'assets/logos/talent-50.jpeg',
+      image: 'assets/logos/talent-50.webp',
       alt: 'Talent 50 logo',
       logo: true,
       summary: 'He manages operations with an eye for talent across sport, music and entertainment: seamless coordination, structure and effective talent development.',
@@ -75,12 +75,12 @@
       active: true,
       num: '05',
       category: 'operations',
-      title: 'Big Ben Socials',
+      title: 'Big Ben\'s Socials Ltd.',
       tag1: 'Head of Operations',
       tag2: 'Events',
       focus: 'Event delivery',
-      image: 'assets/bigben01.jpeg',
-      alt: 'Shegx at a Big Ben Socials event',
+      image: 'assets/bigben01.webp',
+      alt: 'Shegx at a Big Ben\'s Socials Ltd. event',
       pos: '50% 12%',
       summary: 'He heads operations, overseeing planning, execution and organizational efficiency for events and community activations.',
       detail: 'He handles community activations and people-heavy events that need structure without losing energy.'
@@ -94,7 +94,7 @@
       tag1: 'A&R',
       tag2: 'Music & Talent',
       focus: 'Talent development',
-      image: 'assets/logos/kunta-nation.jpeg',
+      image: 'assets/logos/kunta-nation.webp',
       alt: 'Kunta Nation logo',
       logo: true,
       summary: 'An A&R at Kunta Nation, where he identifies, develops and supports emerging creative talent.',
@@ -116,7 +116,7 @@
       label: 'Young Players',
       kicker: 'Development',
       focus: 'Personal training',
-      brings: 'He gives young talents one-to-one football training, not an academy. Real match experience becomes tailored coaching, skill work and mentorship built around each player.',
+      brings: 'He gives young talents one-to-one football training. Real match experience becomes tailored coaching, skill work and mentorship built around each player.',
       formats: ['1:1 sessions', 'Skill development', 'Mentorship', 'Match prep'],
       strengths: ['Active footballer', 'Patient coach', 'Growth focused']
     },
@@ -134,7 +134,7 @@
       label: 'Brands',
       kicker: 'Creative',
       focus: 'Creative direction',
-      brings: 'He brings creative direction (not photography), operations and marketing that connect sport and culture with a confident visual voice. At Kunta Nation he works A&R, identifying and developing emerging creative talent.',
+      brings: 'He brings creative direction, operations and marketing that connect sport and culture with a confident visual voice. At Kunta Nation he works A&R, identifying and developing emerging creative talent.',
       formats: ['Creative direction', 'Campaigns', 'Activations', 'A&R'],
       strengths: ['Creative director', 'Adaptable', 'Operations ready', 'Talent developer']
     },
@@ -185,7 +185,9 @@
      until this has entries. Drop MP4s in assets/videos/ (see its README), then
      list them here. `poster` and `detail` are optional. */
   var MATCH_TAPES = [
-    // { title: 'Solo run and finish', detail: 'big sunday game', src: 'assets/videos/highlight-01.mp4', poster: 'assets/videos/highlight-01.jpg' }
+    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight01.mp4' },
+    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight02.mp4' },
+    { title: 'Match highlight', detail: 'Firecrackers FC', src: 'assets/videos/highlight03.mp4' }
   ];
 
   var SUBSTACK_URL = 'https://shegx07.substack.com';
