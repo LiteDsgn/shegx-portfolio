@@ -1,27 +1,22 @@
-# Football highlight clips
+# Match highlight clips
 
-Drop short highlight videos here and they'll power the football highlights
-gallery (planned to sit right after the Profile section).
+Short match clips that power the "Match tapes" strip at the top of the
+Football Highlights section. Cards autoplay muted on a loop; clicking one
+opens the lightbox and plays the full clip with sound.
 
-## Two ways to provide them
+## Adding a clip
 
-1. **Self-hosted clips (recommended).** Send the actual video files. Best look:
-   they can autoplay muted on a loop in the grid (like a highlight reel), stay
-   fully self-contained, and load fast. Put them here in `assets/videos/`.
-2. **YouTube / Instagram links.** If the highlights already live online, send the
-   links instead and I'll embed them. No files needed, but the gallery then loads
-   from YouTube/Instagram rather than being self-contained.
+1. Drop the MP4 in this folder, following the existing naming:
+   `highlight01.mp4`, `highlight02.mp4`, ...
+2. Add an entry to `MATCH_TAPES` in `js/main.js`:
+   `{ title: 'Match highlight 04', detail: 'Firecrackers FC', src: 'assets/videos/highlight04.mp4' }`
+   (`detail` is the caption on the card; `poster` is optional.)
 
-## Format for self-hosted clips
+## Format
 
 - **MP4** (H.264 video, AAC audio) so every browser plays them.
 - **Short**: roughly 6 to 20 seconds each (goal, skill, assist).
 - **Compressed**: aim for under about 5 MB per clip so the page stays quick.
-  (GitHub caps single files at 100 MB, but small is better here.)
-- Landscape (16:9) or vertical (9:16) both work; I'll adapt the layout.
-- Naming: `highlight-01.mp4`, `highlight-02.mp4`, and so on.
-- Optional but nice: a matching first-frame image, e.g. `highlight-01.jpg`,
-  used as the poster so the grid looks sharp before a clip plays.
-
-Send 3 to 6 for a strong strip. Once they're in, I'll build the gallery
-(muted autoplay-on-loop thumbnails, click to expand and play with sound).
+- Landscape (16:9) fits the card crop best; vertical clips get letterboxed.
+- Optional: a matching poster image (e.g. `highlight04.webp`) referenced via
+  the `poster` field, shown before the clip loads.

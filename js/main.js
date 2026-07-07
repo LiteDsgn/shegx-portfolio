@@ -795,20 +795,11 @@
       vid.muted = true;
       vid.loop = true;
       vid.playsInline = true;
+      vid.preload = 'metadata';
       if (tape.poster) vid.poster = tape.poster;
-      
-      var srcMp4 = el('source');
-      srcMp4.src = tape.src;
-      srcMp4.type = 'video/mp4';
-      vid.appendChild(srcMp4);
-      
-      var srcWebm = el('source');
-      srcWebm.src = tape.src.replace('.mp4', '.webm');
-      srcWebm.type = 'video/webm';
-      vid.insertBefore(srcWebm, srcMp4);
-
+      vid.src = tape.src;
       row.appendChild(vid);
-      
+
       if (tape.detail) row.appendChild(el('span', 'tape-card__title', tape.detail));
 
       row.addEventListener('click', function () {

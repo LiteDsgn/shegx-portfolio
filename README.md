@@ -1,20 +1,33 @@
 # Shegx: Olusegun Adewole
 
-Personal portfolio website for Olusegun Adewole (Shegx): sports and media professional,
-operations leader, talent scout and Firecrackers FC captain, based in Lagos, Nigeria.
+Personal portfolio website for Olusegun Adewole (Shegx): active footballer and
+personal football trainer, team captain at Firecrackers FC, creative director,
+operations specialist, brand-builder and writer, based in Lagos, Nigeria.
 
 Static site with no build step, no framework, and no dependencies.
 
 ## Structure
 
 ```
-├── index.html        Single-page site (hero, roles, expertise, best fit, writing, contact)
+├── index.html        Single-page site (hero, profile, highlights, roles,
+│                     brands, journey, best fit, writing, philosophy, contact)
 ├── css/
-│   └── styles.css    Design tokens + all styling (Anton/Archivo, neo-brutalist system)
+│   └── styles.css    Design tokens + all styling (Anton/Archivo, neo-brutalist
+│                     collage system: hard borders, tape, torn-paper dividers)
 ├── js/
 │   └── main.js       Interactivity: hero slideshow, role filter, audience tabs,
-│                     Substack feed, copy-to-clipboard
-└── assets/           Photography (JPEG, max 1920px wide)
+│                     Substack feed, match-tapes video cards, lightbox,
+│                     copy-to-clipboard
+├── assets/           Photography (WebP), favicon
+│   ├── logos/        Brand marks (see its README)
+│   └── videos/       Match highlight clips (see its README)
+├── data/
+│   └── posts.json    Committed snapshot of the latest Substack posts
+├── scripts/
+│   ├── fetch_substack_posts.py   Refreshes data/posts.json (stdlib only)
+│   └── generate_torn_paper.py    Generates the torn-paper divider SVG paths
+└── .github/workflows/
+    └── substack-posts.yml        Scheduled Action that keeps posts.json current
 ```
 
 ## Run locally
@@ -26,16 +39,18 @@ python3 -m http.server 8080
 # then open http://localhost:8080
 ```
 
-Opening `index.html` directly also works, but the Substack feed fetch needs an
+Opening `index.html` directly also works, but the writing-feed fetches need an
 http(s) origin in some browsers.
 
 ## Writing section
 
-The "Notes from Shegx" section pulls the four latest posts from
-[shegx07.substack.com](https://shegx07.substack.com) via the public
-[rss2json](https://rss2json.com) API. Responses are cached in `localStorage`;
-if the feed is unreachable, the bundled fallback posts in `js/main.js`
-(`DEFAULT_POSTS`) are shown instead.
+The "Notes from Shegx" section shows the latest posts from
+[shegx07.substack.com](https://shegx07.substack.com). Freshness comes in
+layers: a `localStorage` cache renders instantly, then the committed snapshot
+`data/posts.json` (kept current every 6 hours by the GitHub Action) refreshes
+it, with the public [rss2json](https://rss2json.com) API as a network fallback.
+If everything is unreachable, the bundled `DEFAULT_POSTS` in `js/main.js` show
+instead.
 
 ## Deploying
 
