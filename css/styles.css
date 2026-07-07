@@ -930,7 +930,7 @@ section { scroll-margin-top: var(--header-offset); }
 /* ---------- Match tapes ---------- */
 .tapes {
   position: relative;
-  margin-top: 56px;
+  margin-bottom: 56px;
   background: #fff;
   border: var(--border);
   padding: 26px 28px 14px;

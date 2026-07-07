@@ -225,6 +225,16 @@
             <path d="M37 5 l1.5 4.5 M43 9 l-4.5 1.5" stroke-width="3"/>
           </svg>
         </div>
+        <!-- Match tapes: hidden until clips are listed in MATCH_TAPES (js/main.js).
+             Drop MP4s in assets/videos/ per its README, then add entries there. -->
+        <div class="tapes" id="match-tapes" hidden>
+          <div class="tapes__head">
+            <h3 class="tapes__title">Match tapes</h3>
+            <span class="chip chip--sticker">Press play</span>
+          </div>
+          <div class="tapes__list" id="tapes-list"></div>
+        </div>
+
         <div class="gallery__grid">
           <button class="gallery__item" type="button" data-full="assets/dsc-1028.webp" aria-label="Enlarge photo">
             <img src="assets/dsc-1028.webp" alt="Shegx taking on two defenders for the ball" loading="lazy" style="object-position:32% 45%">
@@ -250,16 +260,6 @@
             <img src="assets/dsc-0410.webp" alt="Shegx winning an aerial challenge" loading="lazy" style="object-position:50% 25%">
             <span class="gallery__caption">up for everything</span>
           </button>
-        </div>
-
-        <!-- Match tapes: hidden until clips are listed in MATCH_TAPES (js/main.js).
-             Drop MP4s in assets/videos/ per its README, then add entries there. -->
-        <div class="tapes" id="match-tapes" hidden>
-          <div class="tapes__head">
-            <h3 class="tapes__title">Match tapes</h3>
-            <span class="chip chip--sticker">Press play</span>
-          </div>
-          <div class="tapes__list" id="tapes-list"></div>
         </div>
       </div>
     </section>
