@@ -1681,8 +1681,15 @@ section { scroll-margin-top: var(--header-offset); }
   stroke-linejoin: round;
 }
 
-.torn { display: block; height: 40px; }
-.torn svg { display: block; width: 100%; height: 100%; }
+.torn {
+  display: block;
+  height: 40px;
+  margin-bottom: -1px; /* Overlap to remove gap */
+  position: relative;
+  z-index: 2;
+  overflow: hidden; /* clip the displacement filter so it can't bleed into adjacent sections */
+}
+.torn svg { display: block; width: 100%; height: 100%; overflow: hidden; }
 .torn--to-warm { background: var(--paper-warm); color: var(--paper); }
 .torn--to-ink { background: var(--ink); color: var(--paper-warm); }
 

@@ -3,3 +3,4 @@
 
 # Local working files kept out of the repo
 _archive/
+__pycache__/
