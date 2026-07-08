@@ -46,13 +46,13 @@
       num: '03',
       category: 'creative',
       title: 'The Reborn Brand',
-      tag1: 'CEO',
+      tag1: 'Founder',
       tag2: 'Creative Director',
       focus: 'Creative direction',
       image: 'assets/logos/the-reborn-brand.webp',
       alt: 'The Reborn Brand logo',
       logo: true,
-      summary: 'Founder, CEO and Creative Director. He leads creative direction and brand identity built on courage, class and confidence: art direction and storytelling for a clear, confident visual voice.',
+      summary: 'Founder and Creative Director. He leads creative direction and brand identity built on courage, class and confidence: art direction and storytelling for a clear, confident visual voice.',
       detail: 'His own brand: creative direction, art direction and visual storytelling.'
     },
     {
