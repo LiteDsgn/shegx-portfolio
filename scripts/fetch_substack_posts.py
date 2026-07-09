@@ -12,6 +12,7 @@ python3 scripts/fetch_substack_posts.py feed.xml
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
@@ -35,7 +36,11 @@ def main():
         xml_bytes = Path(sys.argv[1]).read_bytes()
     else:
         req = urllib.request.Request(FEED, headers={'User-Agent': 'shegx-portfolio posts snapshot'})
-        xml_bytes = urllib.request.urlopen(req, timeout=30).read()
+        try:
+            xml_bytes = urllib.request.urlopen(req, timeout=30).read()
+        except (urllib.error.URLError, TimeoutError) as exc:
+            print(f'Feed fetch failed ({exc}); keeping the existing snapshot.')
+            return
     root = ET.fromstring(xml_bytes)
 
     posts = []
