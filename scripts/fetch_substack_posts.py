@@ -5,10 +5,11 @@ Run on a schedule by .github/workflows/substack-posts.yml so the Writing
 section reads a committed snapshot instead of depending on a third-party
 RSS bridge (rss2json caches feeds and can lag behind new posts).
 
-Substack sits behind Cloudflare, which sometimes 403s requests from
-GitHub Actions runners. We send browser-like headers and, if the RSS
-feed is still blocked, fall back to Substack's JSON posts API. If both
-sources fail the script exits non-zero so the workflow run goes red
+Substack sits behind Cloudflare, which 403s requests from GitHub
+Actions IPs no matter the headers or client. We try Substack directly
+first (works locally and may work on other hosts), then fall back to
+server-side mirrors that fetch the feed from their own IPs. If every
+source fails the script exits non-zero so the workflow run goes red
 instead of silently keeping a stale snapshot.
 
 Stdlib only; safe to run locally: python3 scripts/fetch_substack_posts.py
@@ -25,6 +26,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from urllib.parse import quote
 
 SITE = 'https://shegx07.substack.com'
 FEED = f'{SITE}/feed'
@@ -108,6 +110,32 @@ def posts_from_feed(xml_bytes):
     return posts
 
 
+def posts_from_rss2json(json_bytes):
+    data = json.loads(json_bytes)
+    if data.get('status') != 'ok':
+        raise FetchError(f"rss2json status {data.get('status')}")
+    posts = []
+    for item in data.get('items', []):
+        title = (item.get('title') or '').strip()
+        link = (item.get('link') or '').strip()
+        if not title or not link:
+            continue
+
+        date = ''
+        raw_date = (item.get('pubDate') or '').strip()
+        if raw_date:
+            date = fmt_date(datetime.fromisoformat(raw_date))
+
+        image = (item.get('thumbnail') or
+                 (item.get('enclosure') or {}).get('link') or '')
+        snippet = clip(re.sub(r'<[^>]+>', '', item.get('description') or ''))
+        posts.append({'title': title, 'link': link, 'date': date,
+                      'image': image, 'snippet': snippet})
+        if len(posts) == MAX_POSTS:
+            break
+    return posts
+
+
 def posts_from_api(json_bytes):
     posts = []
     for item in json.loads(json_bytes):
@@ -133,16 +161,28 @@ def main():
     if len(sys.argv) > 1:
         posts = posts_from_feed(Path(sys.argv[1]).read_bytes())
     else:
+        sources = [
+            ('Substack RSS feed', FEED, posts_from_feed),
+            ('Substack JSON API', API, posts_from_api),
+            ('allorigins mirror',
+             f'https://api.allorigins.win/raw?url={quote(FEED, safe="")}',
+             posts_from_feed),
+            ('rss2json mirror',
+             f'https://api.rss2json.com/v1/api.json?rss_url={quote(FEED, safe="")}',
+             posts_from_rss2json),
+        ]
         posts = []
-        try:
-            posts = posts_from_feed(fetch(FEED))
-        except (FetchError, ET.ParseError) as exc:
-            print(f'RSS feed fetch failed ({exc}); trying the JSON API.')
-        if not posts:
+        for name, url, parse in sources:
             try:
-                posts = posts_from_api(fetch(API))
-            except (FetchError, json.JSONDecodeError) as exc:
-                raise SystemExit(f'JSON API fetch failed too ({exc}); giving up.')
+                posts = parse(fetch(url))
+            except (FetchError, ET.ParseError, json.JSONDecodeError, ValueError) as exc:
+                print(f'{name} failed ({exc}); trying the next source.')
+                continue
+            if posts:
+                print(f'Got {len(posts)} posts from the {name}.')
+                break
+        else:
+            raise SystemExit('Every source failed; keeping the existing snapshot.')
 
     if not posts:
         raise SystemExit('No posts found in either source; keeping the existing snapshot.')
