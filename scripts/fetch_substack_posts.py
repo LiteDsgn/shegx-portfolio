@@ -17,6 +17,7 @@ python3 scripts/fetch_substack_posts.py feed.xml
 """
 import json
 import re
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -42,9 +43,28 @@ HEADERS = {
 }
 
 
+class FetchError(Exception):
+    pass
+
+
 def fetch(url):
+    """Fetch a URL, falling back from urllib to curl.
+
+    Cloudflare fingerprints TLS handshakes and blocks Python's urllib
+    from datacenter IPs even with browser headers; curl's fingerprint
+    often passes where urllib's does not.
+    """
     req = urllib.request.Request(url, headers=HEADERS)
-    return urllib.request.urlopen(req, timeout=30).read()
+    try:
+        return urllib.request.urlopen(req, timeout=30).read()
+    except (urllib.error.URLError, TimeoutError) as exc:
+        print(f'urllib fetch of {url} failed ({exc}); retrying with curl.')
+    result = subprocess.run(
+        ['curl', '-sfL', '--max-time', '30', '-A', HEADERS['User-Agent'], url],
+        capture_output=True)
+    if result.returncode != 0 or not result.stdout:
+        raise FetchError(f'curl fetch of {url} failed (exit {result.returncode})')
+    return result.stdout
 
 
 def fmt_date(dt):
@@ -116,12 +136,12 @@ def main():
         posts = []
         try:
             posts = posts_from_feed(fetch(FEED))
-        except (urllib.error.URLError, TimeoutError, ET.ParseError) as exc:
+        except (FetchError, ET.ParseError) as exc:
             print(f'RSS feed fetch failed ({exc}); trying the JSON API.')
         if not posts:
             try:
                 posts = posts_from_api(fetch(API))
-            except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+            except (FetchError, json.JSONDecodeError) as exc:
                 raise SystemExit(f'JSON API fetch failed too ({exc}); giving up.')
 
     if not posts:
