@@ -1,0 +1,521 @@
+/* ==========================================================================
+   Shegx CV pages: print-first, A4-friendly layout
+   Reuses design tokens from styles.css
+   ========================================================================== */
+
+:root {
+  --ink: #101418;
+  --ink-soft: #3a4048;
+  --ink-muted: #6a7078;
+  --paper: #ffffff;
+  --paper-warm: #FAF9F4;
+  --yellow: #F5D336;
+  --blue: #1D5FD1;
+  --font-display: "Anton", "Archivo", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-script: "Caveat", "Segoe Script", cursive;
+  --border: 3px solid var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper-warm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--yellow); color: var(--ink); }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Toolbar (screen only) ---------- */
+.cv-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: var(--border);
+}
+
+.cv-toolbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.cv-toolbar__brand img { width: 28px; height: 28px; }
+.cv-toolbar__brand span { color: var(--blue); }
+
+.cv-toolbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--paper);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+.cv-btn:hover { background: var(--paper); color: var(--ink); text-decoration: none; }
+
+.cv-btn--yellow {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.cv-btn--yellow:hover { background: var(--paper); }
+
+/* ---------- Page wrapper ---------- */
+.cv-page {
+  max-width: 210mm;
+  margin: 32px auto;
+  padding: 0;
+  background: var(--paper);
+  border: var(--border);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.cv-inner { padding: 36px 40px 40px; }
+
+/* ---------- Header ---------- */
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 20px;
+  border-bottom: var(--border);
+  margin-bottom: 24px;
+}
+
+.cv-header__main { min-width: 0; }
+
+.cv-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.cv-name {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0 0 4px;
+}
+
+.cv-alias {
+  font-family: var(--font-script);
+  font-size: 18px;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+
+.cv-tagline {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  max-width: 480px;
+}
+
+.cv-contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.cv-contact li { display: flex; gap: 8px; }
+.cv-contact__label {
+  font-weight: 700;
+  min-width: 52px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+
+.cv-photo {
+  width: 110px;
+  height: 130px;
+  object-fit: cover;
+  object-position: center top;
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--yellow);
+}
+
+.cv-photo--logo {
+  object-fit: contain;
+  background: var(--paper-warm);
+  padding: 12px;
+}
+
+/* ---------- Profile strip ---------- */
+.cv-profile {
+  background: var(--paper-warm);
+  border: 2px solid var(--ink);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.cv-profile strong { color: var(--ink); }
+
+/* ---------- Stats row ---------- */
+.cv-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.cv-stat {
+  border: 2px solid var(--ink);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.cv-stat__value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  overflow-wrap: break-word;
+}
+
+.cv-stat__label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+/* ---------- Sections ---------- */
+.cv-section { margin-bottom: 22px; }
+
+.cv-section__title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--yellow);
+  display: inline-block;
+}
+
+.cv-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ---------- Experience entries ---------- */
+.cv-entry { margin-bottom: 14px; }
+.cv-entry:last-child { margin-bottom: 0; }
+
+.cv-entry__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.cv-entry__title {
+  font-weight: 800;
+  font-size: 14px;
+  margin: 0;
+}
+
+.cv-entry__role {
+  font-weight: 600;
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.cv-entry__date {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.cv-entry__desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.cv-entry__bullets {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.cv-entry__bullets li { margin-bottom: 3px; }
+
+/* ---------- Skills / chips ---------- */
+.cv-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cv-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.cv-chip--yellow { background: var(--yellow); }
+
+/* ---------- Awards / trophies list ---------- */
+.cv-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-list li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.cv-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--yellow);
+  border: 1px solid var(--ink);
+}
+
+.cv-list strong { color: var(--ink); }
+
+/* ---------- Footer ---------- */
+.cv-footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.cv-footer a { font-weight: 700; }
+
+/* ---------- Hub page ---------- */
+.cv-hub {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.cv-hub__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 48px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+.cv-hub__lede {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: 0 0 40px;
+}
+
+.cv-hub__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 720px;
+  width: 100%;
+}
+
+.cv-hub__card {
+  display: block;
+  position: relative;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: var(--border);
+  box-shadow: 6px 6px 0 var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+  text-align: left;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.cv-hub__card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+  text-decoration: none;
+}
+
+.cv-hub__card--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.cv-hub__card--dark .cv-kicker { color: var(--yellow); }
+
+.cv-hub__card h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+
+.cv-hub__card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.cv-hub__card--dark p { color: #dfe3e8; }
+
+.cv-hub__card-actions {
+  display: flex;
+  gap: 20px;
+}
+
+/* Stretched link: the whole card clicks through to the view page,
+   while the download link stacks above it as a precise target. */
+.cv-hub__card-arrow--view::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.cv-hub__card-arrow--download {
+  position: relative;
+  z-index: 1;
+}
+
+.cv-hub__card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--blue);
+}
+
+.cv-icon-download {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+a.cv-hub__card-arrow:hover { text-decoration: underline; }
+
+.cv-hub__card--dark .cv-hub__card-arrow { color: var(--yellow); }
+
+.cv-hub__back {
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .cv-inner { padding: 24px 20px 28px; }
+  .cv-header { grid-template-columns: 1fr; }
+  .cv-photo { width: 80px; height: 96px; }
+  .cv-grid-2 { grid-template-columns: 1fr; gap: 16px; }
+  .cv-toolbar { flex-direction: column; align-items: stretch; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  @page { size: A4; margin: 12mm; }
+
+  body { background: white; font-size: 11pt; }
+
+  .cv-toolbar { display: none !important; }
+
+  .cv-page {
+    max-width: none;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .cv-inner { padding: 0; }
+
+  .cv-photo { box-shadow: none; }
+
+  a { color: var(--ink); text-decoration: none; }
+
+  /* Keep individual entries intact, but let long sections flow across pages.
+     break-inside: avoid on .cv-section forced full sections onto the next
+     page, leaving large gaps. */
+  .cv-entry { break-inside: avoid; }
+  .cv-section__title { break-after: avoid; }
+}

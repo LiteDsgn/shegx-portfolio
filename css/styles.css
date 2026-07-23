@@ -565,6 +565,17 @@ section { scroll-margin-top: var(--header-offset); }
 .lane--dark:hover { box-shadow: 8px 8px 0 var(--blue); }
 .lane--dark p { color: var(--on-dark); }
 
+.lane__link {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--blue);
+  text-decoration: none;
+}
+.lane__link:hover { text-decoration: underline; }
+.lane--dark .lane__link { color: var(--yellow); }
+
 /* ---------- Roles ---------- */
 .roles {
   background: var(--yellow);
